@@ -7,7 +7,7 @@ Chráňte vašich blízkych pred nedôveryhodným obsahom
 Pri návšteve webu s nedôveryhodným obsahom označí stránku ako potencionálne nebezpečnú. Bullshit Detector používa databázu projektu [konspiratori.sk](https://www.konspiratori.sk). Spornosť obsahu posudzuje odborná komisia. Rozšírenie má za cieľ varovať pred falošnými správami, konšpiračnými teóriami, hoaxmi a stránkami šíriacimi nenávisť a fašistické ideológie.
 
 ## Inštalácia
-Rozšírenie je vyvíjané pre internetový prehliadač Google Chrome a môžete si ho nainštalovať priamo z [Chrome Web Store](https://chrome.google.com/webstore/detail/bullshit-detector/klkmmbodblpmaalfhgonnjfmiiokmloe).
+Rozšírenie je vyvíjané pre internetový prehliadač Google Chrome a môžete si ho nainštalovať priamo z [Chrome Web Store](http://bit.ly/bullshit-detector).
 
 ## Prispievanie
 Budeme radi každému dobrému nápadu či vylepšeniu existujúceho kódu formou *Pull request*.
