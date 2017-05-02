@@ -1,5 +1,5 @@
 # Bullshit Detector
-Chráňte vašich blízkych pred nedôveryhodným obsahom
+Chráňte vašich blízkych pred nedôveryhodným obsahom. Viac informácií na [websupport.sk/bullshit-detector](https://www.websupport.sk/bullshit-detector)
 
 ![Bullshit Detector Screenshot](screenshot.png)
 
