@@ -10,7 +10,7 @@ Pri návšteve webu s nedôveryhodným obsahom označí stránku ako potencioná
 Rozšírenie je vyvíjané pre internetový prehliadač Google Chrome a môžete si ho nainštalovať priamo z [Chrome Web Store](http://bit.ly/bullshit-detector).
 
 ## Prispievanie
-Budeme radi každému dobrému nápadu či vylepšeniu existujúceho kódu formou *Pull request*.
+Budeme radi každému dobrému nápadu, portovaniu pre ďalšie prehliadače či vylepšeniu existujúceho kódu formou *Pull requests*.
 
 ## Licencia
 Bullshit Detector je inšpirovaný projektom [bs-detector](https://github.com/bs-detector/bs-detector).
