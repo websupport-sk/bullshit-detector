@@ -1,25 +1,29 @@
 {
-    "manifest_version": 2,
-    "name": "Bullshit Detector",
-    "version": "0.2",
 
-    "description": "Chráňte vašich blízkych pred nedôveryhodným obsahom",
-    "icons": {
+  "manifest_version": 2,
+  "name": "Bullshit Detector",
+  "version": "1.0",
+
+  "description": "Chráňte vašich blízkych pred nedôveryhodným obsahom",
+
+  "icons": {
       "16": "icons/icon16.png",
       "48": "icons/icon48.png",
       "128": "icons/icon128.png"
-    },
+},
 
-    "browser_action": {
+"browser_action": {
       "default_icon": "icons/icon128.png",
       "default_popup": "assets/dialog/dialog.html"
 
     },
 
-    "background": {
-      "scripts": ["domains.js", "tools.js", "background.js"]
-    },
+    "permissions": [ "<all_urls>", "tabs", "activeTab", "proxy", "contextMenus" ],
 
-    "permissions": [ "http://*/", "https://*/", "tabs", "activeTab", "proxy", "contextMenus" ],
-    "short_name": "Bullshit Detector"
+    "short_name": "Bullshit Detector",
+
+    "background": {
+        "scripts": ["domains.js", "tools.js", "background.js", "show_warning.js"]
+    }
+
 }

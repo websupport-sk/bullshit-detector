@@ -1,3 +1,4 @@
+
 // generate unique ID
 var bullshit_detector = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
 
@@ -20,7 +21,7 @@ var content = "<div id='"
     + "Zavrieť upozornenie"
     + "</span>"
     + "<br style='clear: left;' />"
-    + "</div></div>";
++ "</div></div>";
 document.body.innerHTML = content + document.body.innerHTML;
 
 // close notification
