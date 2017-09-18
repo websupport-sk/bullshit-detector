@@ -1,4 +1,4 @@
-// last update 2017-08-09
+// last update 2017-09-18
 var domains = [
   'vigilantcitizen.com',
   'zvedavec.org',
@@ -115,10 +115,9 @@ var domains = [
   'halonoviny.com',
   'vitalitis.cz',
   'literarky.cz',
+  'chillin.sk',
   'instory.cz',
   'bulwar.cz',
-  'expres.cz',
   'eurozpravy.cz',
-  'recenzezdarma.cz',
-  'chillin.sk'
+  'recenzezdarma.cz'
 ];
