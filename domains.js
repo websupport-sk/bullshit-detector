@@ -108,7 +108,6 @@ var domains = [
   'parlamentne-volby-2016.sk',
   'farmazdravi.cz',
   'parlamentnilisty.cz',
-  'parlamentnelisty.sk',
   'trendinfo.sk',
   'prvnizpravy.parlamentnilisty.cz',
   'nevsedni-svet.cz',
