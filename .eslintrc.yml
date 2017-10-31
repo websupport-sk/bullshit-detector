@@ -1,0 +1,7 @@
+env:
+    browser: true
+    webextensions: true
+extends:
+    - "eslint:recommended"
+rules:
+    indent: ["error", 4]
