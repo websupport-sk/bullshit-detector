@@ -1,4 +1,4 @@
-// last update 2017-11-16
+// last update 2018-03-07
 var domains = [
     'vigilantcitizen.com',
     'zvedavec.org',
@@ -96,26 +96,15 @@ var domains = [
     'stredoevropan.cz',
     'zpravodaj24.eu',
     'securitymagazin.cz',
-    'krajskelisty.cz',
     'ipribeh.cz',
     'slovakexportregister.eu',
     'resso.sk',
     'medicalcentrum.eu',
+    'krajskelisty.cz',
     'withform.cz',
     'svobodnymonitor.cz',
     'bajecnylekar.cz',
     'parlamentne-volby-2016.sk',
     'farmazdravi.cz',
-    'parlamentnilisty.cz',
-    'trendinfo.sk',
-    'prvnizpravy.cz',
-    'nevsedni-svet.cz',
-    'halonoviny.com',
-    'vitalitis.cz',
-    'literarky.cz',
-    'chillin.sk',
-    'eurozpravy.cz',
-    'recenzezdarma.cz',
-    'instory.cz',
-    'bulwar.cz'
+    'parlamentnilisty.cz'
 ];
