@@ -1,0 +1,34 @@
+{
+    "appDesc": {
+        "message": "Chraňte svoje blízké před nedůvěryhodným obsahem.",
+        "description":"The description of the application, displayed in the web store."
+    },
+    "notification_warning": {
+        "message": "Zvyšte opatrnost! Tato stránka je zařazena<br/>v seznamu nedůvěryhodných webů.<br/>",
+        "description":"Warning text"
+    },
+    "notification_more": {
+        "message": "Více zjistíte na",
+        "description":"Find more at"
+    },
+    "notification_close": {
+        "message": "Zavřít upozornění",
+        "description":"Close warning"
+    },
+    "dialog_doubts": {
+        "message": "Máte pochybnosti<br />o důvěryhodnosti této<br />stránky?",
+        "description":"Doubts text"
+    },
+    "dialog_check": {
+        "message": "Nechte ji prověřit odbornou komisí!",
+        "description":"Check text"
+    },
+    "dialog_report": {
+        "message": "Nahlásit web",
+        "description":"Report web"
+    },
+    "dialog_about": {
+        "message": "Více o rozšíření",
+        "description":"Find more"
+    }
+}
