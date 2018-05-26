@@ -1,6 +1,10 @@
 // generate unique ID
 var bullshit_detector = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
 
+function getMessage(key) {
+    return chrome.i18n.getMessage(key);
+}
+
 // notification area
 var content = "<div id='"
     + bullshit_detector
@@ -10,17 +14,18 @@ var content = "<div id='"
     + "</div>"
     + "<div style='float: left; padding-left: 60px;'>"
     + "<div style='color: #ffffff; text-align: left; text-transform: uppercase; padding-top: 65px; font-size: 24px; font-style: normal; font-variant: normal; font-weight: 500;line-height: 31px; letter-spacing: 1px;'>"
-    + "Zvýšte opatrnosť! Táto stránka je zaradená<br/>"
-    + "v zozname nedôveryhodných webov<br/>"
+    + getMessage("notification_warning")
     + "</div>"
     + "<span style='color: #ffffff; text-align:left; float:left; font-size:14px; padding-top:25px; padding-bottom:5px;'>"
-    + "Zistite viac na <a href='https://www.konspiratori.sk/' target='_blank' style='color: #6fa79e; font-weight: bold; text-decoration: underline;'>konspiratori.sk</a>"
+    + getMessage("notification_more")
+    + " <a href='https://www.konspiratori.sk/' target='_blank' style='color: #6fa79e; font-weight: bold; text-decoration: underline;'>konspiratori.sk</a>"
     + "</span>"
     + "<span id='bullshit_detector_dismiss' style='color: #ffffff; text-align: left; float: right; font-size: 14px; padding-top: 25px; padding-bottom: 5px;text-decoration: underline;cursor: pointer;'>"
-    + "Zavrieť upozornenie"
+    + getMessage("notification_close")
     + "</span>"
     + "<br style='clear: left;' />"
     + "</div></div>";
+
 document.body.innerHTML = content + document.body.innerHTML;
 
 // close notification
