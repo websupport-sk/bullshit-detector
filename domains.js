@@ -105,7 +105,6 @@ var domains = [
   'lajkit.cz',
   'stredoevropan.cz',
   'zpravodaj24.eu',
-  'securitymagazin.cz',
   'ipribeh.cz',
   'slovakexportregister.eu',
   'ozonyx.cz',
