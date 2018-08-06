@@ -1,4 +1,4 @@
-// last update 2018-05-02
+// last update 2018-08-06
 var domains = [
   'vigilantcitizen.com',
   'zvedavec.org',
@@ -116,7 +116,6 @@ var domains = [
   'bajecnylekar.cz',
   'parlamentne-volby-2016.sk',
   'farmazdravi.cz',
-  'parlamentnilisty.cz',
   'bajecnyzivot.sk',
   'okoun.cz'
 ];
