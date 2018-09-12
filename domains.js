@@ -1,4 +1,4 @@
-// last update 2018-08-06
+// last update 2018-09-12
 var domains = [
   'vigilantcitizen.com',
   'zvedavec.org',
@@ -57,7 +57,6 @@ var domains = [
   'proevropu.com',
   'cestyksobe.cz',
   'ceskoaktualne.cz',
-  'pravyprostor.cz',
   'karolinaloskotova.blog.cz',
   'nejhorsi.cz',
   'osud.cz',
@@ -88,7 +87,6 @@ var domains = [
   'medzicas.sk',
   'radyprezeny.sk',
   'breitbart.com',
-  'drsne.sk',
   'slovenskeslovo.sk',
   'domacaliecba.sk',
   'themindunleashed.com',
@@ -105,6 +103,7 @@ var domains = [
   'lajkit.cz',
   'stredoevropan.cz',
   'zpravodaj24.eu',
+  'pravyprostor.cz',
   'ipribeh.cz',
   'slovakexportregister.eu',
   'ozonyx.cz',
