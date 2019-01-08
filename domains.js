@@ -1,4 +1,4 @@
-// last update 2018-10-01
+// last update 2019-01-08
 var domains = [
   'vigilantcitizen.com',
   'zvedavec.org',
@@ -25,7 +25,6 @@ var domains = [
   'pravdive.eu',
   'bezpolitickekorektnosti.cz',
   'freeglobe.cz',
-  'morezprav.cz',
   'svobodnenoviny.eu',
   'vedomec.com',
   'antiilluminati.net',
@@ -78,7 +77,6 @@ var domains = [
   'skrytapravda.cz',
   'priezor.com',
   'panobcan.sk',
-  'tiscali.cz',
   'slobodnyvyber.sk',
   'svetkolemnas.info',
   'stopislam.eu',
@@ -120,9 +118,11 @@ var domains = [
   'slovakexportregister.eu',
   'ozonyx.cz',
   'weeks.cz',
+  'prvnizpravy.cz',
   'resso.sk',
   'stredoevropan.cz',
   'medicalcentrum.eu',
+  'vitalitis.cz',
   'withform.cz',
   'svobodnymonitor.cz',
   'bajecnylekar.cz',
@@ -130,5 +130,5 @@ var domains = [
   'farmazdravi.cz',
   'bajecnyzivot.sk',
   'prosvet.cz',
-  'okoun.cz'
+  'halonoviny.com'
 ];
