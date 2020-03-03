@@ -1,4 +1,4 @@
-// last update 2019-10-02
+// last update 2020-03-03
 var domains = [
   'vigilantcitizen.com',
   'zvedavec.org',
@@ -120,7 +120,6 @@ var domains = [
   'slovenskeslovo.sk',
   'domacaliecba.sk',
   'themindunleashed.com',
-  'hlavnespravy.sk',
   'narodninoviny.cz',
   'fresher.sk',
   'radynadzlato.sk',

@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "Bullshit Detector",
-    "version": "0.18",
+    "version": "0.19",
 
     "description": "Chráňte vašich blízkych pred nedôveryhodným obsahom",
     "icons": {
