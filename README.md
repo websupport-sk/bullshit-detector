@@ -18,4 +18,4 @@ Bullshit Detector je inšpirovaný projektom [bs-detector](https://github.com/bs
 Všetky súbory rozširenia sú licencované pod otvorenou MIT licenciou. Pre viac detailov si pozrite súbor *LICENSE*.
 
 ## Hľadáme kolegov
-Zaujal vás tento softvér? Neustále hľadáme nové talenty. [Nájdite sa v otvorených pozíciach!](https://www.websupport.sk/kariera).
+Zaujal vás tento softvér? Neustále hľadáme nové talenty. [Nájdite sa v otvorených pozíciach!](https://www.websupport.sk/kariera)
