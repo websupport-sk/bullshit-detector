@@ -1,4 +1,4 @@
-// last update 2021-05-20
+// last update 2021-10-26
 var domains = [
   'vigilantcitizen.com',
   'protiprudu.org',
