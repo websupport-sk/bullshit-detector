@@ -1,4 +1,4 @@
-// last update 2022-02-11
+// last update 2022-03-03
 var domains = [
   'vigilantcitizen.com',
   'protiprudu.org',
@@ -7,6 +7,7 @@ var domains = [
   'aeronet.cz',
   'conspi.cz',
   'nwoo.org',
+  'geneticka-vakcina.com',
   'arfa.cz',
   'exopolitika.cz',
   'badatel.net',
@@ -41,6 +42,7 @@ var domains = [
   'rukojmi.cz',
   'rozhladna.org',
   'yournewswire.com',
+  'kralicianora.org',
   'slobodnyvysielac.sk',
   'ezopress.sk',
   'prekladyodlesa.sk',
@@ -64,6 +66,7 @@ var domains = [
   'alternativnimagazin.cz',
   'isstras.eu',
   'infokuryr.cz',
+  'zvtv.sk',
   'cz24.news',
   'voxpopuliblog.cz',
   'prehladsprav.sk',
@@ -78,6 +81,7 @@ var domains = [
   'mysteria.sk',
   'freedomeurope.eu',
   'lifenews.sk',
+  'samvojakvpoli.sk',
   'otevrisvoumysl.cz',
   'naseveru.org',
   'eurabia.cz',
@@ -206,6 +210,7 @@ var domains = [
   'svobodnymonitor.cz',
   'bajecnylekar.cz',
   'parlamentne-volby-2016.sk',
+  'pravda24.cz',
   'farmazdravi.cz',
   'presstv.sk',
   'zlapanda.cz',
