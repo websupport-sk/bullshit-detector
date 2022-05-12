@@ -1,4 +1,4 @@
-// last update 2022-07-11
+// last update 2022-05-12
 // RegEx (,).*
 var domains = [
   'vigilantcitizen.com',
@@ -230,7 +230,5 @@ var domains = [
   'bajecnyzivot.sk',
   'dennikpolitika.sk',
   'prosvet.cz',
-  'halonoviny.com',
-  'polemag.sk',
-  'epochtimes.cz'
+  'halonoviny.com'
 ];
