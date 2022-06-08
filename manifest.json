@@ -20,6 +20,6 @@
       "scripts": ["domains.js", "tools.js", "background.js"]
     },
 
-    "permissions": [ "http://*/", "https://*/", "tabs", "activeTab", "proxy", "contextMenus" ],
+    "permissions": [ "http://*/", "https://*/", "tabs", "activeTab", "contextMenus" ],
     "short_name": "Bullshit Detector"
 }
