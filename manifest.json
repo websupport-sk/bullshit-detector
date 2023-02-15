@@ -1,25 +1,26 @@
 {
-    "manifest_version": 2,
-    "name": "Bullshit Detector",
-    "version": "2022.7",
+  "manifest_version": 3,
+  "name": "Bullshit Detector",
+  "short_name": "Bullshit Detector",
+  "version": "2023.1",
 
-    "description": "Chráňte vašich blízkych pred nedôveryhodným obsahom",
-    "icons": {
-      "16": "icons/icon16.png",
-      "48": "icons/icon48.png",
-      "128": "icons/icon128.png"
-    },
+  "description": "Chráňte vašich blízkych pred nedôveryhodným obsahom",
 
-    "browser_action": {
-      "default_icon": "icons/icon128.png",
-      "default_popup": "assets/dialog/dialog.html"
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
 
-    },
+  "action": {
+    "default_icon": "icons/icon128.png",
+    "default_popup": "src/assets/dialog/dialog.html"
+  },
 
-    "background": {
-      "scripts": ["domains.js", "tools.js", "background.js"]
-    },
-
-    "permissions": [ "http://*/", "https://*/", "tabs", "activeTab", "contextMenus" ],
-    "short_name": "Bullshit Detector"
+  "background": {
+    "service_worker": "./src/background.js",
+    "type": "module"
+  },
+  "permissions": [ "tabs", "activeTab", "contextMenus", "scripting"],
+  "host_permissions": ["http://*/", "https://*/"]
 }

@@ -1,6 +1,6 @@
 // last update 2022-07-11
 // RegEx (,).*
-var domains = [
+export const domains = [
   'vigilantcitizen.com',
   'protiprudu.org',
   'aeronet.news',
