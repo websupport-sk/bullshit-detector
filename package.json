@@ -1,18 +1,18 @@
 {
-    "name": "bullshit-detector",
-    "homepage": "https://github.com/websupport-sk/bullshit-detector#readme",
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/websupport-sk/bullshit-detector.git"
-    },
-    "bugs": {
-        "url": "https://github.com/websupport-sk/bullshit-detector/issues"
-    },
-    "scripts": {
-        "lint": "eslint '**/*.js'",
-        "test": "npm run lint"
-    },
-    "devDependencies": {
-        "eslint": "^4.10.0"
-    }
+  "name": "bullshit-detector",
+  "homepage": "https://github.com/websupport-sk/bullshit-detector#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/websupport-sk/bullshit-detector.git"
+  },
+  "bugs": {
+    "url": "https://github.com/websupport-sk/bullshit-detector/issues"
+  },
+  "scripts": {
+    "build": "npx tsc"
+  },
+  "devDependencies": {
+    "@types/chrome": "^0.0.225",
+    "typescript": "^5.0.2"
+  }
 }

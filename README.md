@@ -19,3 +19,5 @@ Všetky súbory rozširenia sú licencované pod otvorenou MIT licenciou. Pre vi
 
 ## Hľadáme kolegov
 Zaujal vás tento softvér? Neustále hľadáme nové talenty. [Nájdite sa v otvorených pozíciach!](https://www.websupport.sk/kariera)
+
+

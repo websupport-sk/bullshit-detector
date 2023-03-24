@@ -1,5 +1,5 @@
 // check domains
-export const isFakeNewsDomain = (domains, hostname)  => {
+export const isFakeNewsDomain = (domains: string[], hostname: string)  => {
     // check sites - one domain .com
     const domain_tld = getDomainInTwoLevels(hostname);
     if (isInList(domains, domain_tld)) {
@@ -12,6 +12,6 @@ export const isFakeNewsDomain = (domains, hostname)  => {
     return isInList(domains, subdomain_domain_tld) ? true : false
 }
 
-const isInList = (domains, host) =>  domains.indexOf(host) !== -1 ;
-const getDomainInTwoLevels = (hostname) => hostname.split('.').splice(-2).join('.')
-const getDomainInThreeLevels = (hostname) => hostname.split('.').splice(-3).join('.');
+const isInList = (domains: string[], host: string) =>  domains.indexOf(host) !== -1 ;
+const getDomainInTwoLevels = (hostname:string) => hostname.split('.').splice(-2).join('.')
+const getDomainInThreeLevels = (hostname:string) => hostname.split('.').splice(-3).join('.');
