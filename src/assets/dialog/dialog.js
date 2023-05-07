@@ -1,4 +1,4 @@
-const link_report = "https://www.konspiratori.sk/nahlasenie-stranky.php";
+const link_report = "https://konspiratori.sk/nahlasenie-stranky";
 const link_about = "https://www.websupport.sk/bullshit-detector";
 const link_konspiratori = "https://www.konspiratori.sk/";
 const link_websupport = "https://www.websupport.sk/";
