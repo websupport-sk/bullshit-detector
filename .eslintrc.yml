@@ -1,7 +1,10 @@
 env:
     browser: true
     webextensions: true
+    es2022: true
 extends:
     - "eslint:recommended"
 rules:
     indent: ["error", 4]
+parserOptions:
+  sourceType: module

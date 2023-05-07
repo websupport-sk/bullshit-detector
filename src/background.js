@@ -6,17 +6,17 @@ import {showWarning} from "./show_warning.js";
 chrome.runtime.onInstalled.addListener(() => {});
 
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
-  if (changeInfo.status !== 'complete') {
-    return;
-  }
+    if (changeInfo.status !== 'complete') {
+        return;
+    }
 
-  var url = new URL(tab.url);
-  var hostname = url.hostname;
+    const url = new URL(tab.url);
+    const hostname = url.hostname;
 
 
-  if (isFakeNewsDomain(domains, hostname)) {
-    chrome.scripting.executeScript({target : { tabId }, func: showWarning});
-  }
+    if (isFakeNewsDomain(domains, hostname)) {
+        chrome.scripting.executeScript({target : { tabId }, func: showWarning});
+    }
 });
 
 

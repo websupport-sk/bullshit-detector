@@ -1,9 +1,9 @@
 
 export const showWarning = () => {
-  const bullshit_detector = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+    const bullshit_detector = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
 
-  // notification area
-  const content = `
+    // notification area
+    const content = `
     <div
         id="${bullshit_detector}"
         style='display: inline-block; color: #fffff; background-color: #2b3743; z-index: 2147483647; width: 100%; top: 0; left: 0; padding: 0px !important; text-align: center; font-size: 14px; line-height: 1.5; font-family: Arial, Helvetica, sans-serif; -webkit-box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.5); -moz-box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.5); box-shadow: 0px 10px 10px 0px rgba(0,0,0,0.5); position: fixed; -webkit-touch-callout: none; -webkit-user-select: none; user-select: none;'
@@ -27,12 +27,12 @@ export const showWarning = () => {
     </div>
   `
 
-  document.body.innerHTML = content + document.body.innerHTML;
+    document.body.innerHTML = content + document.body.innerHTML;
 
-  // close notification
-  const close = document.getElementById('bullshit_detector_dismiss');
-  close.addEventListener('click',function() {
-      document.getElementById(bullshit_detector).style.display = 'none';
-  });
+    // close notification
+    const close = document.getElementById('bullshit_detector_dismiss');
+    close.addEventListener('click',function() {
+        document.getElementById(bullshit_detector).style.display = 'none';
+    });
 
 }

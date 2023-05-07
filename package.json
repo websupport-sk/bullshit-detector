@@ -13,6 +13,6 @@
         "test": "npm run lint"
     },
     "devDependencies": {
-        "eslint": "^4.10.0"
+        "eslint": "^8.40.0"
     }
 }
