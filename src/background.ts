@@ -4,8 +4,7 @@ import { showWarning } from './utils/show_warning';
 
 chrome.runtime.onInstalled.addListener(() => {});
 
-// @ts-ignore
-const domains: string[] = getDomains();
+const domains: Record<string, string> = getDomains();
 
 chrome.tabs.onUpdated.addListener( ( tabId: number, changeInfo: chrome.tabs.TabChangeInfo, tab: chrome.tabs.Tab)  => {
   if (changeInfo.status !== 'complete') {
