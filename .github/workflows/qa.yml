@@ -1,5 +1,6 @@
 
 name: QA
+
 on:
   push:
     branches:
