@@ -1,0 +1,20 @@
+
+
+
+
+{
+  "compilerOptions": {
+    "strict": false,
+    "module": "es6",
+    "target": "es6",
+    "esModuleInterop": true,
+    "sourceMap": false,
+
+    "outDir": "dist",
+    "noEmitOnError": true,
+    "types": [
+      "chrome"
+    ]
+  },
+  "lib": ["es2015"]
+}
