@@ -1,7 +1,6 @@
 {
   "name": "bullshit-detector",
   "homepage": "https://github.com/websupport-sk/bullshit-detector#readme",
-  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/websupport-sk/bullshit-detector.git"
@@ -12,16 +11,16 @@
   "scripts": {
     "build": "tsc --noEmit && vite build",
     "dev": "tsc --noEmit && vite build --watch",
-    "lint": "eslint '**/*.js'",
-    "test": "npm run lint"
+    "lint": "eslint ./src '**/*.ts'",
+    "lint:fix": "eslint ./src '**/*.ts' --fix"
   },
   "devDependencies": {
     "@types/chrome": "^0.0.225",
-    "typescript": "^5.0.2"
-  },
-  "dependencies": {
-    "vite": "^4.3.5",
-    "eslint": "^8.40.0"
-  }
+    "@typescript-eslint/eslint-plugin": "^5.59.5",
+    "@typescript-eslint/parser": "^5.59.5",
+    "eslint": "^8.40.0",
+    "eslint-plugin-sonarjs": "^0.18.0",
+    "typescript": "^5.0.2",
+    "vite": "^4.3.5"
   }
 }

@@ -1,6 +1,6 @@
 export const getDomains = (): Record<string, string> => {
 
-  let lastDatabaseUpdate = parseInt(localStorage.getItem('lastDatabaseUpdate')!);
+  const lastDatabaseUpdate = parseInt(localStorage.getItem('lastDatabaseUpdate')!);
   let domainScores = JSON.parse(localStorage.getItem('domainScores')!);
 
   const incompleteData = lastDatabaseUpdate === null || isNaN(lastDatabaseUpdate) || domainScores === null;
@@ -15,7 +15,7 @@ export const getDomains = (): Record<string, string> => {
 
 
 async function fetchAndStoreDomains(): Promise<Record<string, string>> {
-  let domainScores: Record<string, string> = {};
+  const domainScores: Record<string, string> = {};
 
   try {
     const domainsFile = await fetch('http://127.0.0.1:8887/zoznam.txt');
