@@ -11,13 +11,17 @@
   },
   "scripts": {
     "build": "tsc --noEmit && vite build",
-    "dev": "tsc --noEmit && vite build --watch"
+    "dev": "tsc --noEmit && vite build --watch",
+    "lint": "eslint '**/*.js'",
+    "test": "npm run lint"
   },
   "devDependencies": {
     "@types/chrome": "^0.0.225",
     "typescript": "^5.0.2"
   },
   "dependencies": {
-    "vite": "^4.3.5"
+    "vite": "^4.3.5",
+    "eslint": "^8.40.0"
+  }
   }
 }
