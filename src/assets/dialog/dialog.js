@@ -1,8 +1,8 @@
-var link_report = "https://www.konspiratori.sk/nahlasenie-stranky.php";
-var link_about = "https://www.websupport.sk/bullshit-detector";
-var link_konspiratori = "https://www.konspiratori.sk/";
-var link_websupport = "https://www.websupport.sk/";
-document.getElementById("report").href = link_report;
-document.getElementById("about").href = link_about;
-document.getElementById("konspiratori").href = link_konspiratori;
-document.getElementById("websupport").href = link_websupport;
+const link_report = 'https://konspiratori.sk/nahlasenie-stranky';
+const link_about = 'https://www.websupport.sk/bullshit-detector';
+const link_konspiratori = 'https://www.konspiratori.sk/';
+const link_websupport = 'https://www.websupport.sk/';
+document.getElementById('report').href = link_report;
+document.getElementById('about').href = link_about;
+document.getElementById('konspiratori').href = link_konspiratori;
+document.getElementById('websupport').href = link_websupport;
