@@ -1,11 +1,13 @@
 {
   "compilerOptions": {
-    "module": "commonjs",
+    "strict": false,
+    "module": "es2022",
+    "target": "es2017",
     "esModuleInterop": true,
-    "target": "es6",
-    "moduleResolution": "node",
-    "sourceMap": true,
+    "sourceMap": false,
+
     "outDir": "dist",
+    "noEmitOnError": true,
     "types": [
       "chrome"
     ]
