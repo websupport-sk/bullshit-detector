@@ -1,6 +1,7 @@
 {
   "name": "bullshit-detector",
   "homepage": "https://github.com/websupport-sk/bullshit-detector#readme",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/websupport-sk/bullshit-detector.git"
@@ -9,10 +10,14 @@
     "url": "https://github.com/websupport-sk/bullshit-detector/issues"
   },
   "scripts": {
-    "build": "npx tsc"
+    "build": "tsc --noEmit && vite build",
+    "dev": "tsc --noEmit && vite build --watch"
   },
   "devDependencies": {
     "@types/chrome": "^0.0.225",
     "typescript": "^5.0.2"
+  },
+  "dependencies": {
+    "vite": "^4.3.5"
   }
 }

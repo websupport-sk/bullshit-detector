@@ -18,8 +18,8 @@
   },
 
   "background": {
-    "service_worker": "./dist/background.js",
-    "type": "module"
+    "service_worker": "./dist/background.es.js"
+
   },
   "permissions": [ "tabs", "activeTab", "contextMenus", "scripting"],
   "host_permissions": ["http://*/", "https://*/"]
