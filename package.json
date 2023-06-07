@@ -21,6 +21,6 @@
     "eslint": "^8.40.0",
     "eslint-plugin-sonarjs": "^0.18.0",
     "typescript": "^5.0.2",
-    "vite": "^4.3.5"
+    "vite": "^4.3.9"
   }
 }
