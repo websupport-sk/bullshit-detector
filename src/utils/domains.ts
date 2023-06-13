@@ -1,3 +1,5 @@
+import backupRatings from './backup';
+
 export const getDomains = async (): Promise<Record<string, string>> => {
 
   const data = await chrome.storage.local.get(['lastDatabaseUpdate', 'domainScores']);
@@ -11,29 +13,34 @@ export const getDomains = async (): Promise<Record<string, string>> => {
     domainScores = fetchAndStoreDomains();
   }
 
-  return {'aeronet.news': '9.7'};
+  return domainScores;
 };
 
 
 async function fetchAndStoreDomains(): Promise<Record<string, string>> {
-  const domainScores: Record<string, string> = {};
+  let domainScores: Record<string, string> = {};
 
   try {
-    const domainsFile = await fetch('http://127.0.0.1:8887/zoznam.txt');
-    const text = await domainsFile.text();
+    const domainsFile = await fetch('https://konspiratori.sk/static/lists/zoznam.txt');
+    if (!domainsFile.ok) {
+      throw new Error('Failed to fetch domains file');
+    }
 
+    const text = await domainsFile.text();
     const lines = text.split('\n');
 
     for (const line of lines) {
-      let url: string, score: string;
-      [url, score] = line.split(',');
+      const [url, score] = line.split(',');
       domainScores[url] = score;
     }
 
-    await chrome.storage.local.set({ domainScores });
     await saveLastDatabaseUpdateTimeStamp();
   } catch (error) {
-    // todo load fallback scores from file
+    // This would have been a nice dynamic import, however, dynamic imports are not supported in Service Workers.
+    // https://github.com/w3c/ServiceWorker/issues/1356
+    domainScores = backupRatings;
+  } finally {
+    await chrome.storage.local.set({ domainScores });
   }
 
   // TODO we are expecting to get this in form of array
