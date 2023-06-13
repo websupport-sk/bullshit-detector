@@ -1,5 +1,5 @@
 
-export const showWarning = () => {
+export const showWarning = (domainScore: string = '') => {
   const bullshit_detector = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
 
   // notification area
@@ -15,8 +15,9 @@ export const showWarning = () => {
       </div>
       <div style='float: left; padding-left: 60px;'>
         <div style='color: #ffffff; text-align: left; text-transform: uppercase; padding-top: 65px; font-size: 24px; font-style: normal; font-variant: normal; font-weight: 500;line-height: 31px; letter-spacing: 1px;'>
-          Zvýšte opatrnosť! Táto stránka je zaradená<br/>
-          v zozname nedôveryhodných webov<br/>
+          Zvýšte opatrnosť!<br/>
+          Táto stránka je zaradená v zozname<br>
+          nedôveryhodných webov so skóre <span style="color: #DA5653">${domainScore}</span>.<br/>
         </div>
         <span style='color: #ffffff; text-align:left; float:left; font-size:14px; padding-top:25px; padding-bottom:5px;'>
         Zistite viac na <a href='https://www.konspiratori.sk/' target='_blank' style='color: #6fa79e; font-weight: bold; text-decoration: underline;'>konspiratori.sk</a>

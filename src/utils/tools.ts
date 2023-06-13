@@ -15,3 +15,16 @@ export const isFakeNewsDomain = (domains: Record<string, string>, hostname: stri
 const isInList = (domains: Record<string, string>, host: string) =>  Object.keys(domains).indexOf(host) !== -1 ;
 const getDomainInTwoLevels = (hostname:string) => hostname.split('.').splice(-2).join('.');
 const getDomainInThreeLevels = (hostname:string) => hostname.split('.').splice(-3).join('.');
+
+export const getDomainScore = async (hostname: string): Promise<string> => {
+  if (hostname.startsWith('www.')) {
+    hostname = hostname.slice(4);
+  }
+
+  try {
+    const data = await chrome.storage.local.get('domainScores');
+    return data.domainScores[hostname].toString().replace('.', ',');
+  } catch (_) {
+    return '';
+  }
+};
