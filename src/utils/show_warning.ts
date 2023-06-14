@@ -1,7 +1,12 @@
+import {HideRequest, Score} from '../types/types';
 
-export const showWarning = (domainScore: string = '') => {
+export const showWarning = (domainScore: Score = '', hostname = '') => {
   const bullshit_detector = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
 
+  // todo if this is imported, the browser throws a runtime error, look into it please
+  const getTrimmedHostname = (hostname: string) => {
+    return hostname.startsWith('www.') ? hostname.slice(4) : hostname;
+  };
   // notification area
   const content = `
     <div
@@ -26,16 +31,59 @@ export const showWarning = (domainScore: string = '') => {
         Zavrieť upozornenie
         </span>
         <br style='clear: left;' />
+        chcem skryt toto upozornenie na
+        <select id="hide-type">
+            <option value="page">tejto stranke</option>
+            <option value="site">celom webe ${getTrimmedHostname(hostname)}</option>
+        </select>
+        na
+        <select id="hide-duration">
+            <option value="day">24 hodin</option>
+            <option value="week"">tyzden</option>
+            <option value="indefinitely">eobmedzene dlho</option>
+        </select>
+        <button id="test-button">test</button>
       </div>
     </div>
   `;
 
   document.body.innerHTML = content + document.body.innerHTML;
 
+  function closeWarning() {
+    document.getElementById(bullshit_detector).style.display = 'none';
+  }
+
   // close notification
   const close = document.getElementById('bullshit_detector_dismiss');
-  close.addEventListener('click',function() {
-    document.getElementById(bullshit_detector).style.display = 'none';
-  });
+  close.addEventListener('click', closeWarning);
 
+  // close notification
+  const test = document.getElementById('test-button');
+  test.addEventListener('click',async function() {
+    // @ts-ignore
+    const hideType = document.getElementById('hide-type').value;
+    // @ts-ignore
+    const hideDuration = document.getElementById('hide-duration').value;
+    const url = new URL(window.location.href);
+    const hostname = getTrimmedHostname(url.hostname);
+
+    let hiddenResource = hostname;
+
+    if (hideType === 'page') {
+      hiddenResource = hostname.concat(url.pathname);
+    } // if hideType is site, hiddenResource is merely the hostname
+
+    await (async () => {
+      await chrome.runtime.sendMessage({
+        messageType: 'hideRequest',
+        hideType,
+        hideDuration,
+        hiddenResource,
+      } as HideRequest);
+    })();
+
+    closeWarning();
+  });
 };
+
+

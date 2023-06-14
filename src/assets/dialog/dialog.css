@@ -147,3 +147,7 @@ body {
   padding-right: 15px;
   padding-top: 15px;
 }
+
+.feedback_prompt {
+  margin: 20px 0;
+}

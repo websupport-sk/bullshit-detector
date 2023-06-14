@@ -1,7 +1,7 @@
 import backupRatings from './backup';
+import {DomainScores} from '../types/types';
 
-export const getDomains = async (): Promise<Record<string, string>> => {
-
+export const getDomains = async (): Promise<DomainScores> => {
   const data = await chrome.storage.local.get(['lastDatabaseUpdate', 'domainScores']);
   const lastDatabaseUpdate = data.lastDatabaseUpdate;
   let domainScores = data.domainScores;
@@ -10,15 +10,14 @@ export const getDomains = async (): Promise<Record<string, string>> => {
   const obsoleteData = Date.now() - lastDatabaseUpdate > 1000 * 60 * 60 * 24 * 7; // 7 days
 
   if (incompleteData || obsoleteData) {
-    domainScores = fetchAndStoreDomains();
+    domainScores = await fetchAndStoreDomains();
   }
 
   return domainScores;
 };
 
-
-async function fetchAndStoreDomains(): Promise<Record<string, string>> {
-  let domainScores: Record<string, string> = {};
+async function fetchAndStoreDomains(): Promise<DomainScores> {
+  let domainScores: DomainScores = {};
 
   try {
     const domainsFile = await fetch('https://konspiratori.sk/static/lists/zoznam.txt');
@@ -43,12 +42,10 @@ async function fetchAndStoreDomains(): Promise<Record<string, string>> {
     await chrome.storage.local.set({ domainScores });
   }
 
-  // TODO we are expecting to get this in form of array
   return domainScores;
 }
 
-
 async function saveLastDatabaseUpdateTimeStamp() {
   const currentTimeStamp = Date.now();
-  await chrome.storage.local.set({ currentTimeStamp });
+  await chrome.storage.local.set({ lastDatabaseUpdate: currentTimeStamp });
 }
