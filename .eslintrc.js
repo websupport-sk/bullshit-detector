@@ -16,7 +16,7 @@ module.exports = {
     //FORMATTING
     'max-len': ['warn', 120],
     'semi': ['warn'],
-    'max-lines': ['warn', 1000],
+    'max-lines': ['off'],
     'indent': ['warn', 2],
     'quotes': ['warn', 'single'],
     'arrow-spacing': ['warn', {'before': true, 'after': true}],
