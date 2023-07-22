@@ -1,6 +1,6 @@
-import {HideRequest, Score} from '../types/types';
+import { DomainDetail, HideRequest } from '../types/types';
 
-export const showWarning = (domainScore: Score = '', hostname = '') => {
+export const showWarning = (domainDetail: DomainDetail, hostname = '') => {
   const bullshit_detector = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
 
   // todo if this is imported, the browser throws a runtime error, look into it please
@@ -22,10 +22,10 @@ export const showWarning = (domainScore: Score = '', hostname = '') => {
         <div style='color: #ffffff; text-align: left; text-transform: uppercase; padding-top: 65px; font-size: 24px; font-style: normal; font-variant: normal; font-weight: 500;line-height: 31px; letter-spacing: 1px;'>
           Zvýšte opatrnosť!<br/>
           Táto stránka je zaradená v zozname<br>
-          nedôveryhodných webov so skóre <span style="color: #DA5653">${domainScore}</span>.<br/>
+          nedôveryhodných webov so skóre <span style="color: #DA5653">${domainDetail.score}</span>.<br/>
         </div>
         <span style='color: #ffffff; text-align:left; float:left; font-size:14px; padding-top:25px; padding-bottom:5px;'>
-        Zistite viac na <a href='https://www.konspiratori.sk/' target='_blank' style='color: #6fa79e; font-weight: bold; text-decoration: underline;'>konspiratori.sk</a>
+        Zistite viac na <a href="${domainDetail.reportUrl}" target='_blank' style='color: #6fa79e; font-weight: bold; text-decoration: underline;'>konspiratori.sk</a>
         </span>
         <span id='bullshit_detector_dismiss' style='color: #ffffff; text-align: left; float: right; font-size: 14px; padding-top: 25px; padding-bottom: 5px;text-decoration: underline;cursor: pointer;'>
         Zavrieť upozornenie

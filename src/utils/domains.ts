@@ -29,8 +29,8 @@ async function fetchAndStoreDomains(): Promise<DomainScores> {
     const lines = text.split('\n');
 
     for (const line of lines) {
-      const [url, score] = line.split(',');
-      domainScores[url] = score;
+      const [url, score, reportUrl] = line.split(',');
+      domainScores[url] = {score, reportUrl};
     }
 
     await saveLastDatabaseUpdateTimeStamp();

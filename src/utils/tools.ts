@@ -1,8 +1,8 @@
 // check domains
 import {
+  DomainDetail,
   DomainScores,
   PermanentlyHiddenResources,
-  Score,
   TemporarilyHiddenResources
 } from '../types/types';
 import {getDomains} from './domains';
@@ -25,14 +25,14 @@ const isInList = (domains: DomainScores, host: string) =>  Object.keys(domains).
 const getDomainInTwoLevels = (hostname: string) => hostname.split('.').splice(-2).join('.');
 const getDomainInThreeLevels = (hostname: string) => hostname.split('.').splice(-3).join('.');
 
-export const getDomainScore = async (hostname: string): Promise<Score> => {
+export const getDomainDetail = async (hostname: string): Promise<DomainDetail> => {
   hostname = getTrimmedHostname(hostname);
 
   try {
     const data = await chrome.storage.local.get('domainScores');
-    return data.domainScores[hostname].toString().replace('.', ',');
+    return data.domainScores[hostname];
   } catch (_) {
-    return '';
+    return {score: '', reportUrl: ''};
   }
 };
 

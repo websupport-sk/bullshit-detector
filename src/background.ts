@@ -1,4 +1,4 @@
-import {getDomainScore, isFakeNewsDomain, isHiddenResource} from './utils/tools';
+import {getDomainDetail, isFakeNewsDomain, isHiddenResource} from './utils/tools';
 import { showWarning } from './utils/show_warning';
 import {HideRequest, Message} from './types/types';
 import {deleteHideSettings, hideRequestHandler} from './utils/hide';
@@ -22,11 +22,11 @@ async function main () {
         return;
       }
 
-      const domainScore = await getDomainScore(hostname);
+      const domainDetail = await getDomainDetail(hostname);
       await chrome.scripting.executeScript({
         target: { tabId },
         func: showWarning,
-        args: [domainScore, hostname]
+        args: [domainDetail, hostname]
       });
     }
   });
