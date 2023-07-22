@@ -18,3 +18,18 @@ deleteHideSettingsButton.addEventListener('click', async () => {
     deleteHideSettingsButton.disabled = true;
   }
 });
+
+
+(async function displayLastDatabaseUpdateTime() {
+  const response = await chrome.runtime.sendMessage({
+    messageType: 'getLastDatabaseUpdateRequest',
+  });
+  if (response?.success) {
+    const indicator = document.getElementById('last-database-update-date');
+    indicator.textContent = response.date;
+  }
+})();
+
+
+
+

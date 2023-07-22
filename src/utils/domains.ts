@@ -16,7 +16,7 @@ export const getDomains = async (): Promise<DomainScores> => {
   return domainScores;
 };
 
-async function fetchAndStoreDomains(): Promise<DomainScores> {
+export async function fetchAndStoreDomains(): Promise<DomainScores> {
   let domainScores: DomainScores = {};
 
   try {
@@ -43,6 +43,11 @@ async function fetchAndStoreDomains(): Promise<DomainScores> {
   }
 
   return domainScores;
+}
+
+export async function getLastDatabaseUpdateTimestamp() {
+  const response = await chrome.storage.local.get('lastDatabaseUpdate');
+  return response.lastDatabaseUpdate;
 }
 
 async function saveLastDatabaseUpdateTimeStamp() {
