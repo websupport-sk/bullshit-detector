@@ -40,9 +40,9 @@ export const showWarning = (domainScore: Score = '', hostname = '') => {
         <select id="hide-duration">
             <option value="day">24 hodin</option>
             <option value="week"">tyzden</option>
-            <option value="indefinitely">eobmedzene dlho</option>
+            <option value="indefinitely">Neobmedzene dlho</option>
         </select>
-        <button id="test-button">test</button>
+        <button id="test-button">Skryť</button>
       </div>
     </div>
   `;
