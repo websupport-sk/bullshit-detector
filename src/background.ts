@@ -3,6 +3,7 @@ import { showWarning } from './utils/show_warning';
 import {HideRequest, Message} from './types/types';
 import {deleteHideSettings, hideRequestHandler} from './utils/hide';
 import {fetchAndStoreDomains, getLastDatabaseUpdateTimestamp} from './utils/domains';
+import updateInterval from './consts/updateInterval';
 
 
 
@@ -51,16 +52,37 @@ import {fetchAndStoreDomains, getLastDatabaseUpdateTimestamp} from './utils/doma
         // Due to asynchronicity, this has to be extracted from this listener.
         // Otherwise, the response is evaluated before actually being sent.
         // https://stackoverflow.com/a/74777631/8678845
-        handleGetLastDatabaseUpdateRequest(sendResponse);
+        sendFormattedDatabaseUpdateDateTimes(sendResponse);
+        break;
+      case 'updateDatabaseRequest':
+        updateDatabase(sendResponse);
+        break;
       }
+
       return true;
     }
   );
 })();
 
-const handleGetLastDatabaseUpdateRequest = async (sendResponse: (response?: any) => void) => {
-  const dateObject = new Date(await getLastDatabaseUpdateTimestamp());
-  const formattedDate = `${dateObject.toLocaleDateString('sk-SK')} o ${dateObject.toLocaleTimeString('sk-SK')}`;
-  sendResponse({success: true, date: formattedDate});
+const updateDatabase = async (sendResponse) => {
+  await fetchAndStoreDomains();
+  await sendFormattedDatabaseUpdateDateTimes(sendResponse);
+};
+
+const sendFormattedDatabaseUpdateDateTimes = async (sendResponse: (response?: any) => void) => {
+  const lastUpdateTimestamp = await getLastDatabaseUpdateTimestamp();
+  const lastUpdateObject = new Date(lastUpdateTimestamp);
+  const nextUpdateObject = new Date(lastUpdateTimestamp + updateInterval);
+
+  const formattedLastUpdate = `${lastUpdateObject.toLocaleDateString('sk-SK')}
+   o ${lastUpdateObject.toLocaleTimeString('sk-SK')}`;
+  const formattedNextUpdate = `${nextUpdateObject.toLocaleDateString('sk-SK')}
+   o ${nextUpdateObject.toLocaleTimeString('sk-SK')}`;
+
+  sendResponse({
+    success: true,
+    lastUpdate: formattedLastUpdate,
+    nextUpdate: formattedNextUpdate
+  });
 };
 

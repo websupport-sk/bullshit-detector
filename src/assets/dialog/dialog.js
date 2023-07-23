@@ -7,6 +7,7 @@ document.getElementById('about').href = link_about;
 document.getElementById('konspiratori').href = link_konspiratori;
 document.getElementById('websupport').href = link_websupport;
 const deleteHideSettingsButton = document.getElementById('delete_hide_settings');
+const updateDatabaseButton = document.getElementById('update-database');
 
 deleteHideSettingsButton.addEventListener('click', async () => {
   const response = await chrome.runtime.sendMessage({
@@ -20,13 +21,35 @@ deleteHideSettingsButton.addEventListener('click', async () => {
 });
 
 
+function showLastDatabaseUpdateTime(date) {
+  const lastDatabaseUpdateDateElement = document.getElementById('last-database-update-date');
+  lastDatabaseUpdateDateElement.textContent = date;
+}
+
+function showNextDatabaseUpdateTime(date) {
+  const nextDatabaseUpdateDateElement = document.getElementById('next-database-update-date');
+  nextDatabaseUpdateDateElement.textContent = date;
+}
+
+updateDatabaseButton.addEventListener('click', async () => {
+  const response = await chrome.runtime.sendMessage({
+    messageType: 'updateDatabaseRequest',
+  });
+
+  if (response.success) {
+    showLastDatabaseUpdateTime(response.lastUpdate);
+    showNextDatabaseUpdateTime(response.nextUpdate);
+  }
+});
+
 (async function displayLastDatabaseUpdateTime() {
   const response = await chrome.runtime.sendMessage({
     messageType: 'getLastDatabaseUpdateRequest',
   });
+
   if (response?.success) {
-    const indicator = document.getElementById('last-database-update-date');
-    indicator.textContent = response.date;
+    showLastDatabaseUpdateTime(response.lastUpdate);
+    showNextDatabaseUpdateTime(response.nextUpdate);
   }
 })();
 

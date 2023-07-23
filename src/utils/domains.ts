@@ -1,5 +1,6 @@
 import backupRatings from './backup';
 import {DomainScores} from '../types/types';
+import updateInterval from '../consts/updateInterval';
 
 export const getDomains = async (): Promise<DomainScores> => {
   const data = await chrome.storage.local.get(['lastDatabaseUpdate', 'domainScores']);
@@ -7,7 +8,7 @@ export const getDomains = async (): Promise<DomainScores> => {
   let domainScores = data.domainScores;
 
   const incompleteData = lastDatabaseUpdate === null || isNaN(lastDatabaseUpdate) || domainScores === null;
-  const obsoleteData = Date.now() - lastDatabaseUpdate > 1000 * 60 * 60 * 24 * 7; // 7 days
+  const obsoleteData = Date.now() - lastDatabaseUpdate > updateInterval; // 7 days
 
   if (incompleteData || obsoleteData) {
     domainScores = await fetchAndStoreDomains();

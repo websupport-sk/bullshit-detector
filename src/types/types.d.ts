@@ -12,7 +12,7 @@ export interface DomainDetail {
 }
 
 export interface Message {
-  messageType: 'hideRequest' | 'deleteHideSettingsRequest' | 'getLastDatabaseUpdateRequest';
+  messageType: 'hideRequest' | 'deleteHideSettingsRequest' | 'getLastDatabaseUpdateRequest' | 'updateDatabaseRequest';
 }
 
 export interface HideRequest extends Message {
