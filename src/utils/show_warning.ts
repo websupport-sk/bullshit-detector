@@ -31,6 +31,11 @@ export const showWarning = (domainDetail: DomainDetail, hostname = '') => {
         Zavrieť upozornenie
         </span>
         <br style='clear: left;' />
+        <div>
+          <a href=https://whois.domaintools.com/${getTrimmedHostname(hostname)} target="_blank">
+            Podrobnosti o registracii domeny
+          </a>
+        </div>
         chcem skryt toto upozornenie na
         <select id="hide-type">
             <option value="page">tejto stranke</option>
