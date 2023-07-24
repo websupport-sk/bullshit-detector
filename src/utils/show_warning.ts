@@ -55,7 +55,10 @@ export const showWarning = (domainDetail: DomainDetail, hostname = '') => {
   document.body.innerHTML = content + document.body.innerHTML;
 
   function closeWarning() {
+    console.log('closing hahaha')
+    console.log(document.getElementById(bullshit_detector).style);
     document.getElementById(bullshit_detector).style.display = 'none';
+    console.log(document.getElementById(bullshit_detector).style);
   }
 
   // close notification
@@ -78,14 +81,12 @@ export const showWarning = (domainDetail: DomainDetail, hostname = '') => {
       hiddenResource = hostname.concat(url.pathname);
     } // if hideType is site, hiddenResource is merely the hostname
 
-    await (async () => {
-      await chrome.runtime.sendMessage({
-        messageType: 'hideRequest',
-        hideType,
-        hideDuration,
-        hiddenResource,
-      } as HideRequest);
-    })();
+    await chrome.runtime.sendMessage({
+      messageType: 'hideRequest',
+      hideType,
+      hideDuration,
+      hiddenResource,
+    } as HideRequest);
 
     closeWarning();
   });

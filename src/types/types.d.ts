@@ -30,3 +30,12 @@ export interface TemporarilyHiddenResources {
 }
 
 export type DomainScores = Record<Domain, DomainDetail>
+
+export interface FormattedDatabaseUpdateDateTimes {
+  lastUpdate: string
+  nextUpdate: string
+}
+
+export interface FormattedDatabaseUpdateDateTimesResponse extends FormattedDatabaseUpdateDateTimes {
+  success: true
+}

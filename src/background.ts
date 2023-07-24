@@ -1,6 +1,10 @@
 import {getDomainDetail, isFakeNewsDomain, isHiddenResource} from './utils/tools';
 import { showWarning } from './utils/show_warning';
-import {HideRequest, Message} from './types/types';
+import {
+  FormattedDatabaseUpdateDateTimesResponse,
+  HideRequest,
+  Message
+} from './types/types';
 import {deleteHideSettings, hideRequestHandler} from './utils/hide';
 import {fetchAndStoreDomains, getLastDatabaseUpdateTimestamp} from './utils/domains';
 import updateInterval from './consts/updateInterval';
@@ -43,6 +47,7 @@ import updateInterval from './consts/updateInterval';
       switch (request.messageType) {
       case 'hideRequest':
         hideRequestHandler(request as HideRequest);
+        sendResponse({success: true});
         break;
       case 'deleteHideSettingsRequest':
         deleteHideSettings();
@@ -69,7 +74,7 @@ const updateDatabase = async (sendResponse) => {
   await sendFormattedDatabaseUpdateDateTimes(sendResponse);
 };
 
-const sendFormattedDatabaseUpdateDateTimes = async (sendResponse: (response?: any) => void) => {
+const sendFormattedDatabaseUpdateDateTimes = async (sendResponse: (response: FormattedDatabaseUpdateDateTimesResponse) => void) => {
   const lastUpdateTimestamp = await getLastDatabaseUpdateTimestamp();
   const lastUpdateObject = new Date(lastUpdateTimestamp);
   const nextUpdateObject = new Date(lastUpdateTimestamp + updateInterval);
@@ -83,6 +88,6 @@ const sendFormattedDatabaseUpdateDateTimes = async (sendResponse: (response?: an
     success: true,
     lastUpdate: formattedLastUpdate,
     nextUpdate: formattedNextUpdate
-  });
+  } as FormattedDatabaseUpdateDateTimesResponse);
 };
 
