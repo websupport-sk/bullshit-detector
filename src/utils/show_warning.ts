@@ -55,10 +55,7 @@ export const showWarning = (domainDetail: DomainDetail, hostname = '') => {
   document.body.innerHTML = content + document.body.innerHTML;
 
   function closeWarning() {
-    console.log('closing hahaha')
-    console.log(document.getElementById(bullshit_detector).style);
-    document.getElementById(bullshit_detector).style.display = 'none';
-    console.log(document.getElementById(bullshit_detector).style);
+    document.getElementById(bullshit_detector).remove();
   }
 
   // close notification
