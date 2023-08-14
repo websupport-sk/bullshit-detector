@@ -16,6 +16,8 @@ import updateInterval from './consts/updateInterval';
     fetchAndStoreDomains();
   });
 
+  let theTabId;
+
   chrome.tabs.onUpdated.addListener( async (
     tabId: number,
     changeInfo: chrome.tabs.TabChangeInfo,
@@ -24,6 +26,8 @@ import updateInterval from './consts/updateInterval';
     if (changeInfo.status !== 'complete') {
       return;
     }
+
+    theTabId = tabId;
 
     const url: URL = new URL(tab.url);
     const hostname: string = url.hostname;
@@ -34,6 +38,9 @@ import updateInterval from './consts/updateInterval';
       }
 
       const domainDetail = await getDomainDetail(hostname);
+
+      await insertCss(tabId);
+
       await chrome.scripting.executeScript({
         target: { tabId },
         func: showWarning,
@@ -61,6 +68,9 @@ import updateInterval from './consts/updateInterval';
         break;
       case 'updateDatabaseRequest':
         updateDatabase(sendResponse);
+        break;
+      case 'closeWarningNotice':
+        removeCss(theTabId);
         break;
       }
 
@@ -91,3 +101,16 @@ const sendFormattedDatabaseUpdateDateTimes = async (sendResponse: (response: For
   } as FormattedDatabaseUpdateDateTimesResponse);
 };
 
+const insertCss = async (tabId: number) => {
+  await chrome.scripting.insertCSS({
+    files: ['src/assets/styles_of_beyond.css'],
+    target: { tabId }
+  });
+};
+
+const removeCss = async (tabId: number) => {
+  await chrome.scripting.removeCSS({
+    files: ['src/assets/styles_of_beyond.css'],
+    target: { tabId }
+  });
+};

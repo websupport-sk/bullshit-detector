@@ -19,7 +19,7 @@ export const showWarning = (domainDetail: DomainDetail, hostname = '') => {
         >
       </div>
       <div style='float: left; padding-left: 60px;'>
-        <div style='color: #ffffff; text-align: left; text-transform: uppercase; padding-top: 65px; font-size: 24px; font-style: normal; font-variant: normal; font-weight: 500;line-height: 31px; letter-spacing: 1px;'>
+        <div style='color: #ffffff; text-align: left; text-transform: uppercase; padding-top: 65px; font-size: 24px; font-style: normal; font-variant: normal; font-weight: 500;line-height: 31px; letter-spacing: 1px;' class="bd-title">
           Zvýšte opatrnosť!<br/>
           Táto stránka je zaradená v zozname<br>
           nedôveryhodných webov so skóre <span style="color: #DA5653">${domainDetail.score}</span>.<br/>
@@ -54,8 +54,12 @@ export const showWarning = (domainDetail: DomainDetail, hostname = '') => {
 
   document.body.innerHTML = content + document.body.innerHTML;
 
-  function closeWarning() {
+  async function closeWarning() {
     document.getElementById(bullshit_detector).remove();
+
+    await chrome.runtime.sendMessage({
+      messageType: 'closeWarningNotice'
+    });
   }
 
   // close notification
@@ -85,7 +89,7 @@ export const showWarning = (domainDetail: DomainDetail, hostname = '') => {
       hiddenResource,
     } as HideRequest);
 
-    closeWarning();
+    await closeWarning();
   });
 };
 
