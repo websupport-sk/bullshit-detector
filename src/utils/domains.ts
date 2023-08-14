@@ -8,7 +8,7 @@ export const getDomains = async (): Promise<DomainScores> => {
   let domainScores = data.domainScores;
 
   const incompleteData = lastDatabaseUpdate === null || isNaN(lastDatabaseUpdate) || domainScores === null;
-  const obsoleteData = Date.now() - lastDatabaseUpdate > updateInterval; // 7 days
+  const obsoleteData = Date.now() - lastDatabaseUpdate > updateInterval;
 
   if (incompleteData || obsoleteData) {
     domainScores = await fetchAndStoreDomains();
