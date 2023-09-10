@@ -16,8 +16,7 @@ export interface Message {
     'hideRequest' |
     'deleteHideSettingsRequest' |
     'getLastDatabaseUpdateRequest' |
-    'updateDatabaseRequest' |
-    'closeWarningNotice';
+    'updateDatabaseRequest'
 }
 
 export interface HideRequest extends Message {

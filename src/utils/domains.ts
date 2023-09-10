@@ -1,6 +1,6 @@
 import backupRatings from './backup';
 import {DomainScores} from '../types/types';
-import updateInterval from '../consts/updateInterval';
+import updateInterval from '../consts/update_interval';
 
 export const getDomains = async (): Promise<DomainScores> => {
   const data = await chrome.storage.local.get(['lastDatabaseUpdate', 'domainScores']);

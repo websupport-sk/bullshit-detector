@@ -22,5 +22,19 @@
 
   },
   "permissions": [ "tabs", "scripting", "storage"],
-  "host_permissions": ["http://*/", "https://*/"]
+  "host_permissions": ["http://*/", "https://*/"],
+
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "src/assets/img/cary.png",
+        "src/assets/styles/styles_of_beyond.css",
+        "src/assets/fonts/WebsupportSans-Bold.woff2",
+        "src/assets/fonts/WebsupportSans-Normal.woff2",
+        "src/assets/fonts/WebsupportSans-ExtraBold.woff2"
+      ],
+      "matches": ["<all_urls>"]
+    }
+
+  ]
 }

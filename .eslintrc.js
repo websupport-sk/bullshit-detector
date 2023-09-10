@@ -24,7 +24,6 @@ module.exports = {
     'no-label-var': ['error'],
     //FUNCTIONALITY
     'no-unused-vars': ['warn'],
-    'max-lines-per-function': ['warn', 80],
     'no-var': ['warn'], // do we want this?
     'prefer-const': ['warn'],
     'no-useless-catch': ['error'],

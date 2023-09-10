@@ -1,5 +1,5 @@
 import {getDomainDetail, isFakeNewsDomain, isHiddenResource} from './utils/tools';
-import { showWarning } from './utils/show_warning';
+import { showBanner } from './utils/show_banner';
 import {
   FormattedDatabaseUpdateDateTimesResponse,
   HideRequest,
@@ -7,7 +7,7 @@ import {
 } from './types/types';
 import {deleteHideSettings, hideRequestHandler} from './utils/hide';
 import {fetchAndStoreDomains, getLastDatabaseUpdateTimestamp} from './utils/domains';
-import updateInterval from './consts/updateInterval';
+import updateInterval from './consts/update_interval';
 
 
 
@@ -39,11 +39,9 @@ import updateInterval from './consts/updateInterval';
 
       const domainDetail = await getDomainDetail(hostname);
 
-      await insertCss(tabId);
-
       await chrome.scripting.executeScript({
         target: { tabId },
-        func: showWarning,
+        func: showBanner,
         args: [domainDetail, hostname]
       });
     }
@@ -69,9 +67,6 @@ import updateInterval from './consts/updateInterval';
       case 'updateDatabaseRequest':
         updateDatabase(sendResponse);
         break;
-      case 'closeWarningNotice':
-        removeCss(theTabId);
-        break;
       }
 
       return true;
@@ -84,33 +79,20 @@ const updateDatabase = async (sendResponse) => {
   await sendFormattedDatabaseUpdateDateTimes(sendResponse);
 };
 
-const sendFormattedDatabaseUpdateDateTimes = async (sendResponse: (response: FormattedDatabaseUpdateDateTimesResponse) => void) => {
-  const lastUpdateTimestamp = await getLastDatabaseUpdateTimestamp();
-  const lastUpdateObject = new Date(lastUpdateTimestamp);
-  const nextUpdateObject = new Date(lastUpdateTimestamp + updateInterval);
+const sendFormattedDatabaseUpdateDateTimes =
+  async (sendResponse: (response: FormattedDatabaseUpdateDateTimesResponse) => void) => {
+    const lastUpdateTimestamp = await getLastDatabaseUpdateTimestamp();
+    const lastUpdateObject = new Date(lastUpdateTimestamp);
+    const nextUpdateObject = new Date(lastUpdateTimestamp + updateInterval);
 
-  const formattedLastUpdate = `${lastUpdateObject.toLocaleDateString('sk-SK')}
+    const formattedLastUpdate = `${lastUpdateObject.toLocaleDateString('sk-SK')}
    o ${lastUpdateObject.toLocaleTimeString('sk-SK')}`;
-  const formattedNextUpdate = `${nextUpdateObject.toLocaleDateString('sk-SK')}
+    const formattedNextUpdate = `${nextUpdateObject.toLocaleDateString('sk-SK')}
    o ${nextUpdateObject.toLocaleTimeString('sk-SK')}`;
 
-  sendResponse({
-    success: true,
-    lastUpdate: formattedLastUpdate,
-    nextUpdate: formattedNextUpdate
-  } as FormattedDatabaseUpdateDateTimesResponse);
-};
-
-const insertCss = async (tabId: number) => {
-  await chrome.scripting.insertCSS({
-    files: ['src/assets/styles_of_beyond.css'],
-    target: { tabId }
-  });
-};
-
-const removeCss = async (tabId: number) => {
-  await chrome.scripting.removeCSS({
-    files: ['src/assets/styles_of_beyond.css'],
-    target: { tabId }
-  });
-};
+    sendResponse({
+      success: true,
+      lastUpdate: formattedLastUpdate,
+      nextUpdate: formattedNextUpdate
+    } as FormattedDatabaseUpdateDateTimesResponse);
+  };
