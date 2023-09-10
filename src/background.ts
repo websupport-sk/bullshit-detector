@@ -6,14 +6,15 @@ import {
   Message
 } from './types/types';
 import {deleteHideSettings, hideRequestHandler} from './utils/hide';
-import {fetchAndStoreDomains, getLastDatabaseUpdateTimestamp} from './utils/domains';
+import {fetchAndStoreDomains, getLastDatabaseUpdateTimestamp, prepareBackupDomains} from './utils/domains';
 import updateInterval from './consts/update_interval';
 
 
 
 (async function main () {
-  chrome.runtime.onInstalled.addListener(() => {
-    fetchAndStoreDomains();
+  chrome.runtime.onInstalled.addListener(async () => {
+    await prepareBackupDomains();
+    await fetchAndStoreDomains();
   });
 
   let theTabId;

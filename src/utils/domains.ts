@@ -2,7 +2,7 @@ import backupRatings from './backup';
 import {DomainScores} from '../types/types';
 import updateInterval from '../consts/update_interval';
 
-export const getDomains = async (): Promise<DomainScores> => {
+export async function getDomains(): Promise<DomainScores> {
   const data = await chrome.storage.local.get(['lastDatabaseUpdate', 'domainScores']);
   const lastDatabaseUpdate = data.lastDatabaseUpdate;
   let domainScores = data.domainScores;
@@ -15,33 +15,33 @@ export const getDomains = async (): Promise<DomainScores> => {
   }
 
   return domainScores;
-};
+}
+
+export async function prepareBackupDomains(): Promise<void> {
+  // This would have been a nice dynamic import, however, dynamic imports are not supported in Service Workers.
+  // https://github.com/w3c/ServiceWorker/issues/1356
+  const backup = backupRatings;
+  await chrome.storage.local.set({ backup });
+}
 
 export async function fetchAndStoreDomains(): Promise<DomainScores> {
-  let domainScores: DomainScores = {};
+  const domainScores: DomainScores = {};
+  const domainsFile = await fetch('https://konspiratori.sk/static/lists/zoznam.txt');
 
-  try {
-    const domainsFile = await fetch('https://konspiratori.sk/static/lists/zoznam.txt');
-    if (!domainsFile.ok) {
-      throw new Error('Failed to fetch domains file');
-    }
-
-    const text = await domainsFile.text();
-    const lines = text.split('\n');
-
-    for (const line of lines) {
-      const [url, score, reportUrl] = line.split(',');
-      domainScores[url] = {score, reportUrl};
-    }
-
-    await saveLastDatabaseUpdateTimeStamp();
-  } catch (error) {
-    // This would have been a nice dynamic import, however, dynamic imports are not supported in Service Workers.
-    // https://github.com/w3c/ServiceWorker/issues/1356
-    domainScores = backupRatings;
-  } finally {
-    await chrome.storage.local.set({ domainScores });
+  if (!domainsFile.ok) {
+    return await chrome.storage.local.get('backup');
   }
+
+  const text = await domainsFile.text();
+  const lines = text.split('\n');
+
+  for (const line of lines) {
+    const [url, score, reportUrl] = line.split(',');
+    domainScores[url] = {score, reportUrl};
+  }
+
+  await saveLastDatabaseUpdateTimeStamp();
+  await chrome.storage.local.set({ domainScores, backup: domainScores });
 
   return domainScores;
 }
