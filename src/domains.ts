@@ -1,20 +1,13 @@
 import backupRatings from './backup';
-import {DomainScores} from '../types/types';
-import updateInterval from '../consts/update_interval';
+import {DomainDetail, DomainScores} from './types';
+import updateInterval from './consts';
+import {getTrimmedHostname} from './helpers';
 
-export async function getDomains(): Promise<DomainScores> {
-  const data = await chrome.storage.local.get(['lastDatabaseUpdate', 'domainScores']);
-  const lastDatabaseUpdate = data.lastDatabaseUpdate;
-  let domainScores = data.domainScores;
+export async function getDomainDetail(url: URL): Promise<DomainDetail> {
+  const hostname = getTrimmedHostname(url.hostname);
+  const domains: DomainScores = await getDomains();
 
-  const incompleteData = lastDatabaseUpdate === null || isNaN(lastDatabaseUpdate) || domainScores === null;
-  const obsoleteData = Date.now() - lastDatabaseUpdate > updateInterval;
-
-  if (incompleteData || obsoleteData) {
-    domainScores = await fetchAndStoreDomains();
-  }
-
-  return domainScores;
+  return domains[hostname];
 }
 
 export async function prepareBackupDomains(): Promise<void> {
@@ -54,4 +47,19 @@ export async function getLastDatabaseUpdateTimestamp() {
 async function saveLastDatabaseUpdateTimeStamp() {
   const currentTimeStamp = Date.now();
   await chrome.storage.local.set({ lastDatabaseUpdate: currentTimeStamp });
+}
+
+async function getDomains(): Promise<DomainScores> {
+  const data = await chrome.storage.local.get(['lastDatabaseUpdate', 'domainScores']);
+  const lastDatabaseUpdate = data.lastDatabaseUpdate;
+  let domainScores = data.domainScores;
+
+  const incompleteData = lastDatabaseUpdate === null || isNaN(lastDatabaseUpdate) || domainScores === null;
+  const obsoleteData = Date.now() - lastDatabaseUpdate > updateInterval;
+
+  if (incompleteData || obsoleteData) {
+    domainScores = await fetchAndStoreDomains();
+  }
+
+  return domainScores;
 }

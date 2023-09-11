@@ -1,13 +1,17 @@
-import {getDomainDetail, isFakeNewsDomain} from './utils/tools';
-import { showBanner } from './utils/show_banner';
+import { showBanner } from './show_banner';
 import {
   FormattedDatabaseUpdateDateTimesResponse,
   HideRequest,
   Message
-} from './types/types';
-import {deleteHideSettings, hideRequestHandler, isHiddenResource} from './utils/hide';
-import {fetchAndStoreDomains, getLastDatabaseUpdateTimestamp, prepareBackupDomains} from './utils/domains';
-import updateInterval from './consts/update_interval';
+} from './types';
+import {deleteHideSettings, hideRequestHandler, isHiddenResource} from './hide';
+import {
+  fetchAndStoreDomains,
+  getDomainDetail,
+  getLastDatabaseUpdateTimestamp,
+  prepareBackupDomains
+} from './domains';
+import updateInterval from './consts';
 
 
 
@@ -31,15 +35,17 @@ import updateInterval from './consts/update_interval';
     theTabId = tabId;
 
     const url: URL = new URL(tab.url);
-    const hostname: string = url.hostname;
 
-    if (await isFakeNewsDomain(hostname) && !await isHiddenResource(url)) {
-      const domainDetail = await getDomainDetail(hostname);
+    if (await isHiddenResource(url)) {
+      return;
+    }
 
+    const domainDetail = await getDomainDetail(url);
+    if (domainDetail) {
       await chrome.scripting.executeScript({
         target: { tabId },
         func: showBanner,
-        args: [domainDetail, hostname]
+        args: [domainDetail, url.hostname]
       });
     }
   });

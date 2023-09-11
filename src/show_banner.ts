@@ -1,4 +1,4 @@
-import {DomainDetail, HideDuration, HideRequest, HideType} from '../types/types';
+import {DomainDetail, HideDuration, HideRequest, HideType} from './types';
 
 export function showBanner(domainDetail: DomainDetail, hostname = '')  {
 
@@ -28,6 +28,7 @@ export function showBanner(domainDetail: DomainDetail, hostname = '')  {
     shadowHost.style.zIndex = '2147483647';
     shadowHost.style.position = 'fixed';
     shadowHost.style.top = '0';
+    shadowHost.style.left = '0';
     document.body.prepend(shadowHost);
     return shadowHost.attachShadow({mode: 'closed'});
   }

@@ -1,4 +1,4 @@
-import {DomainScores} from '../types/types';
+import {DomainScores} from './types';
 
 const backupRatings: DomainScores = {
   'ac24.cz': {

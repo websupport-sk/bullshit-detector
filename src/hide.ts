@@ -1,5 +1,5 @@
-import {HideRequest, hiddenResources} from '../types/types';
-import {getTrimmedHostname} from './tools';
+import {HideRequest, hiddenResources} from './types';
+import {getTrimmedHostname} from './helpers';
 
 export async function hideRequestHandler(request: HideRequest) {
   const hideExpirationDate = new Date();
