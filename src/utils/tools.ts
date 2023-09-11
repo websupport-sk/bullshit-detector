@@ -1,10 +1,5 @@
 // check domains
-import {
-  DomainDetail,
-  DomainScores,
-  PermanentlyHiddenResources,
-  TemporarilyHiddenResources
-} from '../types/types';
+import {DomainDetail, DomainScores} from '../types/types';
 import {getDomains} from './domains';
 
 export const isFakeNewsDomain = async (hostname: string)  => {
@@ -37,56 +32,7 @@ export const getDomainDetail = async (hostname: string): Promise<DomainDetail> =
 };
 
 
-export const isHiddenResource = async (url: URL): Promise<boolean> => {
-  const site = getTrimmedHostname(url.hostname);
-  const page = site + url.pathname;
-  let isHidden = false;
-
-  const permanentlyHiddenResources = await getPermanentlyHiddenResources();
-  if (permanentlyHiddenResources.includes(site) || permanentlyHiddenResources.includes(page)) {
-    isHidden = true;
-  }
-
-  const now = Date.now();
-  const temporarilyHiddenResources = await getTemporarilyHiddenResources();
-  let cleanupExecuted = false;
-
-  for (const type of [page, site]) {
-    if (temporarilyHiddenResources.hasOwnProperty(type)) {
-      const resourceAvailabilityTimestamp = temporarilyHiddenResources[type];
-
-      if (!resourceAvailabilityTimestamp) {
-        throw new Error(`Availability timestamp for resource '${type}' was not found or is invalid!`);
-      }
-
-      if (now < resourceAvailabilityTimestamp) {
-        isHidden = true;
-      }
-      if (now >= resourceAvailabilityTimestamp) {
-        delete temporarilyHiddenResources[type];
-        cleanupExecuted = true;
-      }
-    }
-  }
-
-  if (cleanupExecuted) {
-    await chrome.storage.local.set({temporarilyHiddenResources});
-  }
-
-  return isHidden;
-};
-
-
 export const getTrimmedHostname = (hostname: string) => {
   return hostname.startsWith('www.') ? hostname.slice(4) : hostname;
 };
 
-export const getPermanentlyHiddenResources = async (): Promise<PermanentlyHiddenResources> => {
-  const stored = await chrome.storage.local.get('permanentlyHiddenResources');
-  return stored.permanentlyHiddenResources as PermanentlyHiddenResources || [];
-};
-
-export const getTemporarilyHiddenResources = async (): Promise<TemporarilyHiddenResources> => {
-  const stored = await chrome.storage.local.get('temporarilyHiddenResources');
-  return stored.temporarilyHiddenResources as TemporarilyHiddenResources || {};
-};

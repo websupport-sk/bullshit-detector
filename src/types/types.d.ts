@@ -2,7 +2,7 @@ export type Domain = string;
 export type Score = string;
 export type ReportURL = string;
 export type HideType = 'page' | 'site';
-export type HideDuration = 'day' | 'week' | 'indefinitely';
+export type HideDuration = 'day' | 'week' | 'kim_nesmazu';
 export type HiddenResource = string;
 export type HideExpirationDate = number; // the type of Date.now()
 
@@ -27,9 +27,7 @@ export interface HideRequest extends Message {
 
 export interface DeleteHideSettingsRequest extends Message {}
 
-export type PermanentlyHiddenResources = HiddenResource[]
-
-export interface TemporarilyHiddenResources {
+export interface hiddenResources {
   [hiddenResource: HiddenResource]: HideExpirationDate
 }
 

@@ -105,7 +105,7 @@ export function showBanner(domainDetail: DomainDetail, hostname = '')  {
                   <select id="hide-duration" class="text-red">
                       <option value="day">24 hodín</option>
                       <option value="week">týždeň</option>
-                      <option value="indefinitely">neobmedzene dlho</option>
+                      <option value="kim_nesmazu">neobmedzene dlho</option>
                   </select>
                 </span>
                 <button id="hide-button">skryť</button>

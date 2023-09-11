@@ -1,11 +1,11 @@
-import {getDomainDetail, isFakeNewsDomain, isHiddenResource} from './utils/tools';
+import {getDomainDetail, isFakeNewsDomain} from './utils/tools';
 import { showBanner } from './utils/show_banner';
 import {
   FormattedDatabaseUpdateDateTimesResponse,
   HideRequest,
   Message
 } from './types/types';
-import {deleteHideSettings, hideRequestHandler} from './utils/hide';
+import {deleteHideSettings, hideRequestHandler, isHiddenResource} from './utils/hide';
 import {fetchAndStoreDomains, getLastDatabaseUpdateTimestamp, prepareBackupDomains} from './utils/domains';
 import updateInterval from './consts/update_interval';
 
@@ -33,11 +33,7 @@ import updateInterval from './consts/update_interval';
     const url: URL = new URL(tab.url);
     const hostname: string = url.hostname;
 
-    if (await isFakeNewsDomain(hostname)) {
-      if (await isHiddenResource(url)) {
-        return;
-      }
-
+    if (await isFakeNewsDomain(hostname) && !await isHiddenResource(url)) {
       const domainDetail = await getDomainDetail(hostname);
 
       await chrome.scripting.executeScript({
