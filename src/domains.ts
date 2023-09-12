@@ -33,8 +33,13 @@ export async function fetchAndStoreDomains(): Promise<DomainScores> {
     domainScores[url] = {score, reportUrl};
   }
 
-  await saveLastDatabaseUpdateTimeStamp();
-  await chrome.storage.local.set({ domainScores, backup: domainScores });
+  const currentTimeStamp = Date.now();
+
+  await chrome.storage.local.set({
+    domainScores,
+    backup: domainScores,
+    lastDatabaseUpdate: currentTimeStamp
+  });
 
   return domainScores;
 }
@@ -42,11 +47,6 @@ export async function fetchAndStoreDomains(): Promise<DomainScores> {
 export async function getLastDatabaseUpdateTimestamp() {
   const response = await chrome.storage.local.get('lastDatabaseUpdate');
   return response.lastDatabaseUpdate;
-}
-
-async function saveLastDatabaseUpdateTimeStamp() {
-  const currentTimeStamp = Date.now();
-  await chrome.storage.local.set({ lastDatabaseUpdate: currentTimeStamp });
 }
 
 async function getDomains(): Promise<DomainScores> {
