@@ -1,17 +1,22 @@
+import updateInterval from './consts';
 import { showBanner } from './show_banner';
 import {
-  FormattedDatabaseUpdateDateTimesResponse,
+  Message,
   WhitelistRequest,
-  Message
+  FormattedDatabaseUpdateDateTimesResponse
 } from './types';
-import {deleteWhitelist, whitelistRequestHandler, isWhitelisted} from './whitelist';
 import {
-  fetchAndStoreDomains,
+  isWhitelisted,
+  deleteWhitelist,
+  whitelistRequestHandler
+} from './whitelist';
+import {
   getDomainDetail,
+  fetchAndStoreDomains,
+  prepareBackupDomains,
   getLastDatabaseUpdateTimestamp,
-  prepareBackupDomains
 } from './domains';
-import updateInterval from './consts';
+
 
 
 main: {
@@ -70,25 +75,25 @@ main: {
   );
 }
 
-const updateDatabase = async (sendResponse) => {
+async function updateDatabase(sendResponse) {
   await fetchAndStoreDomains();
   await sendFormattedDatabaseUpdateDateTimes(sendResponse);
-};
+}
 
-const sendFormattedDatabaseUpdateDateTimes =
-  async (sendResponse: (response: FormattedDatabaseUpdateDateTimesResponse) => void) => {
-    const lastUpdateTimestamp = await getLastDatabaseUpdateTimestamp();
-    const lastUpdateObject = new Date(lastUpdateTimestamp);
-    const nextUpdateObject = new Date(lastUpdateTimestamp + updateInterval);
+async function sendFormattedDatabaseUpdateDateTimes(sendResponse:
+                                                      (response: FormattedDatabaseUpdateDateTimesResponse) => void) {
+  const lastUpdateTimestamp = await getLastDatabaseUpdateTimestamp();
+  const lastUpdateObject = new Date(lastUpdateTimestamp);
+  const nextUpdateObject = new Date(lastUpdateTimestamp + updateInterval);
 
-    const formattedLastUpdate = `${lastUpdateObject.toLocaleDateString('sk-SK')}
-   o ${lastUpdateObject.toLocaleTimeString('sk-SK')}`;
-    const formattedNextUpdate = `${nextUpdateObject.toLocaleDateString('sk-SK')}
-   o ${nextUpdateObject.toLocaleTimeString('sk-SK')}`;
+  const formattedLastUpdate = `${lastUpdateObject.toLocaleDateString('sk-SK')}
+     o ${lastUpdateObject.toLocaleTimeString('sk-SK')}`;
+  const formattedNextUpdate = `${nextUpdateObject.toLocaleDateString('sk-SK')}
+     o ${nextUpdateObject.toLocaleTimeString('sk-SK')}`;
 
-    sendResponse({
-      success: true,
-      lastUpdate: formattedLastUpdate,
-      nextUpdate: formattedNextUpdate
-    } as FormattedDatabaseUpdateDateTimesResponse);
-  };
+  sendResponse({
+    success: true,
+    lastUpdate: formattedLastUpdate,
+    nextUpdate: formattedNextUpdate
+  } as FormattedDatabaseUpdateDateTimesResponse);
+}
