@@ -1,10 +1,10 @@
 import { showBanner } from './show_banner';
 import {
   FormattedDatabaseUpdateDateTimesResponse,
-  HideRequest,
+  WhitelistRequest,
   Message
 } from './types';
-import {deleteHideSettings, hideRequestHandler, isHiddenResource} from './hide';
+import {deleteWhitelist, whitelistRequestHandler, isWhitelisted} from './whitelist';
 import {
   fetchAndStoreDomains,
   getDomainDetail,
@@ -14,14 +14,11 @@ import {
 import updateInterval from './consts';
 
 
-
-(async function main () {
+main: {
   chrome.runtime.onInstalled.addListener(async () => {
     await prepareBackupDomains();
     await fetchAndStoreDomains();
   });
-
-  let theTabId;
 
   chrome.tabs.onUpdated.addListener( async (
     tabId: number,
@@ -32,50 +29,46 @@ import updateInterval from './consts';
       return;
     }
 
-    theTabId = tabId;
-
     const url: URL = new URL(tab.url);
 
-    if (await isHiddenResource(url)) {
-      return;
-    }
-
-    const domainDetail = await getDomainDetail(url);
-    if (domainDetail) {
-      await chrome.scripting.executeScript({
-        target: { tabId },
-        func: showBanner,
-        args: [domainDetail, url.hostname]
-      });
+    if (!await isWhitelisted(url)) {
+      const domainDetail = await getDomainDetail(url);
+      if (domainDetail) {
+        await chrome.scripting.executeScript({
+          target: { tabId },
+          func: showBanner,
+          args: [domainDetail, url.hostname]
+        });
+      }
     }
   });
 
   chrome.runtime.onMessage.addListener(
-    function(request: Message, sender, sendResponse) {
+    async function handleRequests(request: Message, sender, sendResponse) {
       switch (request.messageType) {
-      case 'hideRequest':
-        hideRequestHandler(request as HideRequest);
+      case 'whitelistRequest':
+        await whitelistRequestHandler(request as WhitelistRequest);
         sendResponse({success: true});
         break;
-      case 'deleteHideSettingsRequest':
-        deleteHideSettings();
+      case 'deleteWhitelistRequest':
+        await deleteWhitelist();
         sendResponse({success: true});
         break;
       case 'getLastDatabaseUpdateRequest':
         // Due to asynchronicity, this has to be extracted from this listener.
         // Otherwise, the response is evaluated before actually being sent.
         // https://stackoverflow.com/a/74777631/8678845
-        sendFormattedDatabaseUpdateDateTimes(sendResponse);
+        await sendFormattedDatabaseUpdateDateTimes(sendResponse);
         break;
       case 'updateDatabaseRequest':
-        updateDatabase(sendResponse);
+        await updateDatabase(sendResponse);
         break;
       }
 
       return true;
     }
   );
-})();
+}
 
 const updateDatabase = async (sendResponse) => {
   await fetchAndStoreDomains();

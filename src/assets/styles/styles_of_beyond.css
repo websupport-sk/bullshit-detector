@@ -58,7 +58,7 @@ button, select {
   opacity: 0;
 }
 
-#hide-button {
+#whitelist-button {
   background-color: var(--bd-banner-red);
   border-radius: 4px;
   padding: 2px 10px;

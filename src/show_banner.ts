@@ -1,4 +1,4 @@
-import {DomainDetail, HideDuration, HideRequest, HideType} from './types';
+import {DomainDetail, WhitelistDuration, WhitelistRequest, WhitelistType} from './types';
 
 export function showBanner(domainDetail: DomainDetail, hostname = '')  {
 
@@ -98,18 +98,18 @@ export function showBanner(domainDetail: DomainDetail, hostname = '')  {
               </div>
               <div class="center">
                 <span>Chcem skryť toto upozornenie na
-                    <select id="hide-type" class="text-red">
+                    <select id="whitelist-type" class="text-red">
                       <option value="page">tejto stránke</option>
                       <option value="site">celom webe ${getTrimmedHostname(hostname)}</option>
                     </select>
                   na
-                  <select id="hide-duration" class="text-red">
+                  <select id="whitelist-duration" class="text-red">
                       <option value="day">24 hodín</option>
                       <option value="week">týždeň</option>
                       <option value="kim_nesmazu">neobmedzene dlho</option>
                   </select>
                 </span>
-                <button id="hide-button">skryť</button>
+                <button id="whitelist-button">skryť</button>
               </div>
               <div class="right">
                 <a href="https://whois.domaintools.com/${getTrimmedHostname(hostname)}"
@@ -127,13 +127,13 @@ export function showBanner(domainDetail: DomainDetail, hostname = '')  {
 
   function addEventListeners(shadowRoot): void {
 
-    const hideButton = shadowRoot.getElementById('hide-button');
+    const whitelistButton = shadowRoot.getElementById('whitelist-button');
     const closeButton = shadowRoot.getElementById('close-button');
     const expandButton = shadowRoot.getElementById('expand-button');
 
     closeButton.addEventListener('click', function (){ closeBanner(shadowRoot); });
     expandButton.addEventListener('click', function (){ toggleCollapsibleRow(shadowRoot); });
-    hideButton.addEventListener('click', async function (){ await hideBanner(shadowRoot); });
+    whitelistButton.addEventListener('click', async function (){ await whitelistUrl(shadowRoot); });
 
     function toggleCollapsibleRow(shadowRoot) {
       const collapsibleRow = shadowRoot.getElementById('collapsible-row');
@@ -155,24 +155,24 @@ export function showBanner(domainDetail: DomainDetail, hostname = '')  {
       }, 500);
     }
 
-    async function hideBanner(shadowRoot): Promise<void> {
-      const hideType: HideType = shadowRoot.getElementById('hide-type').value;
-      const hideDuration: HideDuration = shadowRoot.getElementById('hide-duration').value;
+    async function whitelistUrl(shadowRoot): Promise<void> {
+      const whitelistType: WhitelistType = shadowRoot.getElementById('whitelist-type').value;
+      const whitelistDuration: WhitelistDuration = shadowRoot.getElementById('whitelist-duration').value;
       const url = new URL(window.location.href);
       const hostname = getTrimmedHostname(url.hostname);
 
-      let hiddenResource = hostname;
+      let whitelistedResource = hostname;
 
-      if (hideType === 'page') {
-        hiddenResource = hostname.concat(url.pathname);
-      } // if hideType is site, hiddenResource is merely the hostname
+      if (whitelistType === 'page') {
+        whitelistedResource = hostname.concat(url.pathname);
+      } // if hideType is site, whitelistedResource is merely the hostname
 
       await chrome.runtime.sendMessage({
-        messageType: 'hideRequest',
-        hideType,
-        hideDuration,
-        hiddenResource,
-      } as HideRequest);
+        messageType: 'whitelistRequest',
+        whitelistType,
+        whitelistDuration,
+        whitelistedResource,
+      } as WhitelistRequest);
 
       closeBanner(shadowRoot);
     }

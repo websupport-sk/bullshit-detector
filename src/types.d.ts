@@ -1,10 +1,10 @@
 export type Domain = string;
 export type Score = string;
 export type ReportURL = string;
-export type HideType = 'page' | 'site';
-export type HideDuration = 'day' | 'week' | 'kim_nesmazu';
-export type HiddenResource = string;
-export type HideExpirationDate = number; // the type of Date.now()
+export type WhitelistType = 'page' | 'site';
+export type WhitelistDuration = 'day' | 'week' | 'kim_nesmazu';
+export type WhitelistedResource = string;
+export type WhitelistingExpirationDate = number; // the type of Date.now()
 
 export interface DomainDetail {
   score: Score;
@@ -13,22 +13,22 @@ export interface DomainDetail {
 
 export interface Message {
   messageType:
-    'hideRequest' |
-    'deleteHideSettingsRequest' |
+    'whitelistRequest' |
+    'deleteWhitelistRequest' |
     'getLastDatabaseUpdateRequest' |
     'updateDatabaseRequest'
 }
 
-export interface HideRequest extends Message {
-  hideType: HideType
-  hideDuration: HideDuration
-  hiddenResource: string // hostname or hostname + pathname
+export interface WhitelistRequest extends Message {
+  whitelistType: WhitelistType
+  whitelistDuration: WhitelistDuration
+  whitelistedResource: string // hostname or hostname + pathname
 }
 
-export interface DeleteHideSettingsRequest extends Message {}
+export interface DeleteWhitelistsRequest extends Message {}
 
-export interface hiddenResources {
-  [hiddenResource: HiddenResource]: HideExpirationDate
+export interface whitelistedResources {
+  [whitelistedResource: WhitelistedResource]: WhitelistingExpirationDate
 }
 
 export type DomainScores = Record<Domain, DomainDetail>
