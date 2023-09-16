@@ -49,24 +49,24 @@ main: {
   });
 
   chrome.runtime.onMessage.addListener(
-    async function handleRequests(request: Message, sender, sendResponse) {
+    function handleRequests(request: Message, sender, sendResponse) {
       switch (request.messageType) {
       case 'whitelistRequest':
-        await whitelistRequestHandler(request as WhitelistRequest);
+        whitelistRequestHandler(request as WhitelistRequest);
         sendResponse({success: true});
         break;
       case 'deleteWhitelistRequest':
-        await deleteWhitelist();
+        deleteWhitelist();
         sendResponse({success: true});
         break;
       case 'getLastDatabaseUpdateRequest':
         // Due to asynchronicity, this has to be extracted from this listener.
         // Otherwise, the response is evaluated before actually being sent.
         // https://stackoverflow.com/a/74777631/8678845
-        await sendFormattedDatabaseUpdateDateTimes(sendResponse);
+        sendFormattedDatabaseUpdateDateTimes(sendResponse);
         break;
       case 'updateDatabaseRequest':
-        await updateDatabase(sendResponse);
+        updateDatabase(sendResponse);
         break;
       }
 
