@@ -1,0 +1,160 @@
+@font-face {
+  font-family: "WebsupportSans";
+  src: url("../fonts/WebsupportSans-Normal.woff2") format("woff2");
+  font-weight: normal;
+}
+
+@font-face {
+  font-family: "WebsupportSans";
+  src: url("../fonts/WebsupportSans-Bold.woff2") format("woff2");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: "WebsupportSans";
+  src: url("../fonts/WebsupportSans-ExtraBold.woff2") format("woff2");
+  font-weight: 800;
+}
+
+
+html {
+  --bd-banner-red: #CD5F5B;
+  --bd-banner-white: #FFFFFF;
+  --bd-banner-grey: #7A7A7A;
+  --bd-banner-black: #1A1919;
+}
+
+body, h1, h2 {
+  margin: 0;
+}
+
+body {
+  padding: 32px 8px 24px;
+  background: linear-gradient(180deg, #2E3842 30.73%, #1A1919 64.58%);
+  color: white;
+  width: 400px;
+}
+
+body, button {
+  font-family: "WebsupportSans", sans-serif;
+}
+
+.content {
+  padding: 0 24px 40px;
+}
+
+h1 {
+  font-weight: 800;
+  font-size: 32px;
+}
+
+h1.title {
+  position: relative;
+}
+
+h1.title > img {
+  position: absolute;
+  right: 0;
+  bottom: -32px;
+  height: 96px;
+  filter: drop-shadow(5px 5px 5px #222);
+}
+
+h2 {
+  font-weight: 700;
+  font-size: 20px;
+}
+
+h2.subtitle {
+  margin: 40px 0 16px;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  color: var(--bd-banner-white);
+  background: none;
+  cursor: pointer;
+  border: none;
+  transition: transform 0.2s ease-in-out;
+}
+
+button:hover {
+  transition: transform 0.2s ease-in-out;
+  transform: scale(1.1);
+}
+
+button.primary {
+  font-size: 18px;
+  font-weight: 700;
+  background-color: var(--bd-banner-red);
+  padding: 6px 16px;
+  border-radius: 4px;
+}
+
+button.secondary {
+  color: var(--bd-banner-red);
+  font-size: 18px;
+  font-weight: 800;
+}
+
+button.secondary::after {
+  content: "→";
+}
+
+button.icon > img {
+  height: 16px;
+}
+
+button.icon > img:hover {
+  transform: scale(1.2);
+}
+
+hr {
+  border: 1px solid var(--bd-banner-red);
+  margin: 0 24px;
+}
+
+.actions {
+  padding: 0 24px;
+  font-size: 15px;
+  margin: 24px auto 30px;
+}
+
+.action {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  margin-bottom: 8px;
+}
+
+.logos {
+  display: flex;
+  justify-content: space-between;
+}
+
+.logos > a > button > img {
+  width: auto;
+  height: 32px;
+}
+
+footer {
+  margin-top: 24px;
+}
+
+footer > a > button {
+  display: block;
+  margin: 16px auto 24px;
+}
+
+footer > p {
+  display: block;
+  text-align: center;
+  margin: auto;
+  color: var(--bd-banner-grey)
+}
+
+footer > p > a {
+  color: var(--bd-banner-white);
+}

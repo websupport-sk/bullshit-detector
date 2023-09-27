@@ -14,7 +14,7 @@
 
   "action": {
     "default_icon": "icons/icon128.png",
-    "default_popup": "src/assets/dialog/dialog.html"
+    "default_popup": "src/assets/popup/popup.html"
   },
 
   "background": {

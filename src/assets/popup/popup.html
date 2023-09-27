@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="sk">
+  <head>
+    <title>Bullshit detektor</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="harry.css">
+  </head>
+  <body>
+    <div class="content">
+        <h1 class="title">
+          Máte pochybnosti o<br>
+          dôveryhodnosti<br>
+          tejto stránky?
+          <img src="../img/cary/cape.png" alt="Maskot Websupportu nazývaný Cary">
+        </h1>
+      <h2 class="subtitle">Nechajte ju preveriť odbornou komisiou</h2>
+      <a href="https://konspiratori.sk/nahlasenie-stranky" id="report" target="_blank">
+        <button class="primary">Nahlásiť web</button>
+      </a>
+    </div>
+    <hr>
+
+    <div class="actions">
+      <div class="action">
+        <span id="last-database-update">Databáza aktualizovaná:
+          <span id="last-database-update-date"></span>
+        </span>
+        <button id="update-database" class="icon">
+          <img src="../img/icons/refresh.svg" alt="Obnoviť databázu"/>
+        </button>
+      </div>
+
+      <div class="action">
+        <span>Vymazať nastavenia skrývania banneru.</span>
+        <button id="delete-whitelist" class="icon">
+          <img src="../img/icons/delete.svg" alt="Vymazať"/>
+        </button>
+      </div>
+    </div>
+
+    <div class="logos">
+      <a href="https://www.konspiratori.sk/" target="_blank">
+        <button>
+          <img src="../img/logos/konspiratori.png" alt="logo konšpirátori.sk" />
+        </button>
+      </a>
+      <a href="https://www.websupport.sk/" target="_blank">
+        <button>
+          <img src="../img/logos/websupport.png" alt="logo Websupport" />
+        </button>
+      </a>
+    </div>
+
+    <footer>
+      <a href="https://www.websupport.sk/bullshit-detector" target="_blank">
+        <button class="secondary">
+        Viac o rozšírení
+        </button>
+      </a>
+
+      <p>Napíšte nám spätnú väzbu na
+        <a href="mailto:bullshitdetector@websupport.sk">bullshitdetector@websupport.sk</a>
+      </p>
+    </footer>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
