@@ -1,11 +1,24 @@
+* {
+  all: initial;
+  font-family: "WebsupportSans", sans-serif;
+  color: var(--bd-banner-white);
+  font-size: 18px;
+}
+
 :host {
   --bd-banner-red: #CD5F5B;
   --bd-banner-white: #FFFFFF;
   --bd-banner-black: #1A1919;
 }
 
-.text-white {
-  color: var(--bd-banner-white);
+.preload {
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transition: none !important;
+}
+
+.preload * {
+  transition: none !important;
 }
 
 .text-red {
@@ -33,24 +46,50 @@ a {
   color: white;
 }
 
-button, select {
+button {
+  background-color: transparent;
+}
+
+button, a {
+  transition: transform 0.2s ease-in-out;
+}
+
+button:hover, a:hover {
+  transition: transform 0.2s ease-in-out;
+  transform: scale(1.1);
+}
+
+p {
+  display: block;
+  line-height: 1.5;
+}
+
+select {
+  all: revert;
+  padding: 2px;
+  background-color: var(--bd-banner-black);
+  color: var(--bd-banner-white);
+  border-radius: 5px;
+}
+
+button, select, button > span {
   cursor: pointer;
   border: none;
-  background-color: transparent;
 }
 
 #bd-banner, button, select {
   font-family: "WebsupportSans", sans-serif;
   font-size: 18px;
-  color: var(--bd-banner-white);
   font-weight: normal;
   margin: 0;
 }
 
 #bd-banner {
+  opacity: 1;
   position: fixed;
   width: 100%;
   height: auto;
+  display: block !important;
   transition: opacity 0.5s linear;
 }
 
@@ -59,9 +98,10 @@ button, select {
 }
 
 #whitelist-button {
-  background-color: var(--bd-banner-red);
+  background-color: var(--bd-banner-white);
   border-radius: 4px;
   padding: 2px 10px;
+  margin-left: 8px;
   color: var(--bd-banner-black);
 }
 
@@ -73,7 +113,7 @@ button, select {
   transition: all 0.5s ease-in-out;
 }
 
-.main-row {
+#main-row {
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 40px;
@@ -81,8 +121,10 @@ button, select {
 }
 
 .title {
-  font-size: 75px;
-  margin: 0 0 20px;
+  font-size: min(75px, 9vw);
+  /* The N in our font has some inherent padding which we want to mitigate */
+  margin: 0 0 0 -6px;
+  text-align: center;
 }
 
 .subtitle {
@@ -99,15 +141,17 @@ a, .subtitle {
   color: var(--bd-banner-white);
 }
 
-#bottom-row {
-  z-index: 1000;
+.hexagon-badge {
+  display: inline-block;
 }
 
-#bottom-row, #collapsible-row {
-  align-items: center;
+#bottom-row {
   height: 40px;
+  margin-bottom: 5px;
   display: grid;
+  align-items: center;
   grid-template-columns: 1fr auto 1fr;
+  z-index: 1000;
 }
 
 .left {
@@ -122,19 +166,39 @@ a, .subtitle {
   justify-self: right;
 }
 
+.vertical-break-narrow {
+  border: 1px dashed var(--bd-banner-black);
+  margin: 0;
+}
+
+.text-break-narrow, .vertical-break-narrow {
+  display: none;
+}
+
 #collapsible-row {
   position: absolute;
   align-items: center;
-  padding: 0 20px 10px 20px;
+  padding: 0 20px;
   transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out, z-index 0s linear 0s;
   transform: translateY(-100%);
   opacity: 1;
-  /*height: 0;*/
   z-index: -1;
-  background-color: #1A1919;
   box-sizing: border-box;
   height: auto;
   width: 100%;
+  background-color: var(--bd-banner-red);
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  justify-content: center;
+}
+
+#collapsible-row > .center, #collapsible-row > .right {
+  margin-left: auto;
+  line-height: 50px;
+}
+
+#collapsible-row > .right {
+  margin-left: auto;
 }
 
 #collapsible-row.open {
@@ -180,11 +244,113 @@ a, .subtitle {
   height: 160px;
 }
 
+.score {
+  text-shadow: 2px 4px 6px rgba(30, 30, 30, 0.45);
+}
+
 .score-wrapper {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="64" height="62" viewBox="0 0 64 62" fill="none"><path d="M27.2273 1.29842C30.2433 -0.154037 33.7567 -0.154035 36.7727 1.29842L53.0277 9.12642C56.0438 10.5789 58.2343 13.3257 58.9792 16.5893L62.9939 34.1787C63.7388 37.4423 62.957 40.8676 60.8698 43.4848L49.621 57.5904C47.5338 60.2076 44.3684 61.732 41.0208 61.732H22.9792C19.6316 61.732 16.4662 60.2076 14.379 57.5904L3.1302 43.4848C1.04302 40.8676 0.261238 37.4423 1.00614 34.1787L5.0208 16.5893C5.7657 13.3257 7.95622 10.5789 10.9723 9.12642L27.2273 1.29842Z" fill="%23CD5F5B"/></svg>') no-repeat center center;
   height: 64px;
   width: 64px;
+}
+
+@media screen and (max-width: 1337px) {
+  #collapsible-row {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  #collapsible-row > .left {
+    display: none;
+  }
+
+  #collapsible-row >.center, #collapsible-row >.right {
+    margin: 0;
+  }
+
+  #main-row {
+    display: flex;
+    justify-content: center;
+    padding: 0 20px;
+  }
+
+  #bottom-row {
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .padding-left {
+    padding-left: 0;
+  }
+
+  .cary-wrapper, .text-break {
+    display: none;
+  }
+
+  .score-wrapper {
+    display: flex;
+    margin: 20px auto;
+    justify-self: center;
+  }
+
+  .subtitle {
+    display: flex;
+    text-align: center;
+  }
+
+  .title {
+    margin-left: 0;
+  }
+
+  @media screen and (max-width: 1200px) {
+    #collapsible-row {
+      display: block;
+      text-align: center;
+    }
+    .vertical-break-narrow {
+      display: block;
+    }
+  }
+
+  @media screen and (max-width: 850px) {
+    .text-break-narrow {
+      display: block;
+    }
+
+    #collapsible-row >.center {
+      line-height: 30px;
+      padding: 10px 0;
+    }
+  }
+
+  @media screen and (max-width: 400px) {
+    button, select, .subtitle, #bd-banner {
+      font-size: 14px;
+    }
+
+    #collapsible-row >.center {
+      line-height: 24px;
+      padding: 5px 0 10px;
+    }
+
+    #collapsible-row > .right {
+      line-height: 24px;
+      padding: 8px 0;
+    }
+
+    .score-wrapper {
+      height: 50px;
+      width: 50px;
+      background-size: 50px 50px;
+      margin: 12px auto;
+    }
+
+    .score {
+      font-size: 22px;
+    }
+  }
 }

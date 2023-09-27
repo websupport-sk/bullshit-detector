@@ -87,7 +87,7 @@ async function sendFormattedDatabaseUpdateDateTimes(sendResponse:
   const nextUpdateObject = new Date(lastUpdateTimestamp + updateInterval);
 
   const formattedLastUpdate = `${lastUpdateObject.toLocaleDateString('sk-SK')}
-     o ${lastUpdateObject.toLocaleTimeString('sk-SK')}`;
+     o ${lastUpdateObject.toLocaleTimeString('sk-SK').slice(0, -3)}`;
   const formattedNextUpdate = `${nextUpdateObject.toLocaleDateString('sk-SK')}
      o ${nextUpdateObject.toLocaleTimeString('sk-SK')}`;
 

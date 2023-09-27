@@ -54,27 +54,27 @@ export function showBanner(domainDetail: DomainDetail, hostname = '')  {
 
 
   function showBanner(shadowRoot, domainDetail, hostname): void {
+    // We initialize #bd-banner with display: none which gets overridden with display: block !important in the CSS file.
+    // This prevents a brief flicker of unstyled banner content when it is first loaded.
     shadowRoot.innerHTML = `
         <link
             type="text/css"
             href="${chrome.runtime.getURL('src/assets/styles/styles_of_beyond.css')}"
             rel="stylesheet"
         >
-        <div id="bd-banner">
+        <div id="bd-banner" class="preload" style="display: none">
           <div class="container">
-            <div class="main-row">
-              <div class="padding-left">
+            <div id="main-row" class="padding-left">
+              <div>
                 <p class="title text-big text-extra-bold">Nedôveryhodný web!</p>
                 <div>
                   <p class="subtitle text-medium">
-                    Zvýšte opatrnosť, táto stránka je zaradená v zozname
-                    <br>
-                    nedôveryhodných webov so skórei
+                    Zvýšte opatrnosť! Táto stránka je zaradená v zozname
+                    <br class="text-break">
+                    nedôveryhodných webov so skóre
                   </p>
-                  <div style="display: inline-block">
-                    <div class="score-wrapper">
-                      <span class="score text-medium text-bold">${domainDetail.score}</span>
-                    </div>
+                  <div class="score-wrapper">
+                    <span class="score text-medium text-bold">${domainDetail.score}</span>
                   </div>
                 </div>
               </div>
@@ -85,44 +85,49 @@ export function showBanner(domainDetail: DomainDetail, hostname = '')  {
             <div id="bottom-row">
               <div class="left padding-left">
                 <a href="${domainDetail.reportUrl}" target="_blank">
-                  <span class="text-red">zistite viac na</span> konspiratori.sk
+                  <button class="external-link">
+                    <span class="text-red">Zistite viac na</span> konspiratori.sk
+                  </button>
                 </a>
               </div>
               <div class="center">
-                <button id="close-button" class="text-red">zavriet</button>
+                <button id="close-button" class="text-red">Zavrieť</button>
                 <button id="expand-button">&nbsp;</button>
               </div>
             </div>
             <div id="collapsible-row">
-              <div class="left">
-              </div>
+              <div class="left"></div>
               <div class="center">
-                <span>Chcem skryť toto upozornenie na
-                    <select id="whitelist-type" class="text-red">
+                <span>Chcem skryť toto upozornenie<br class="text-break-narrow"> na
+                    <select id="whitelist-type" class="text-black">
                       <option value="page">tejto stránke</option>
                       <option value="site">celom webe ${getTrimmedHostname(hostname)}</option>
                     </select>
-                  na
-                  <select id="whitelist-duration" class="text-red">
+                  <br class="text-break-narrow">na
+                  <select id="whitelist-duration" class="text-black">
                       <option value="day">24 hodín</option>
                       <option value="week">týždeň</option>
                       <option value="kim_nesmazu">neobmedzene dlho</option>
                   </select>
                 </span>
-                <button id="whitelist-button">skryť</button>
+                <br class="text-break-narrow">
+                <button id="whitelist-button">Skryť</button>
               </div>
+              <hr class="vertical-break-narrow">
               <div class="right">
-                <a href="https://whois.domaintools.com/${getTrimmedHostname(hostname)}"
-                 target="_blank"
-                 class="external-link"
-                 >
-                  podrobnosti o registrácii domény
+                <a href="https://whois.domaintools.com/${getTrimmedHostname(hostname)}" target="_blank">
+                  <button class="external-link">
+                    <span>Podrobnosti o doméne</span>
+                  </button>
                 </a>
               </div>
             </div>
           </div>
         </div>
       `;
+    setTimeout(() => {
+      shadowRoot.querySelector('#bd-banner').classList.remove('preload');
+    }, 500);
   }
 
   function addEventListeners(shadowRoot): void {
