@@ -1,4 +1,3 @@
-import updateInterval from './consts';
 import { showBanner } from './show_banner';
 import {
   Message,
@@ -84,16 +83,12 @@ async function sendFormattedDatabaseUpdateDateTimes(sendResponse:
                                                       (response: FormattedDatabaseUpdateDateTimesResponse) => void) {
   const lastUpdateTimestamp = await getLastDatabaseUpdateTimestamp();
   const lastUpdateObject = new Date(lastUpdateTimestamp);
-  const nextUpdateObject = new Date(lastUpdateTimestamp + updateInterval);
 
-  const formattedLastUpdate = `${lastUpdateObject.toLocaleDateString('sk-SK')}
+  const formattedLastUpdate = `${lastUpdateObject.toLocaleDateString('sk-SK').slice(0, -5)}
      o ${lastUpdateObject.toLocaleTimeString('sk-SK').slice(0, -3)}`;
-  const formattedNextUpdate = `${nextUpdateObject.toLocaleDateString('sk-SK')}
-     o ${nextUpdateObject.toLocaleTimeString('sk-SK')}`;
 
   sendResponse({
     success: true,
     lastUpdate: formattedLastUpdate,
-    nextUpdate: formattedNextUpdate
   } as FormattedDatabaseUpdateDateTimesResponse);
 }

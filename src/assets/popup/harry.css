@@ -22,6 +22,7 @@ html {
   --bd-banner-white: #FFFFFF;
   --bd-banner-grey: #7A7A7A;
   --bd-banner-black: #1A1919;
+  background-color: var(--bd-banner-black);
 }
 
 body, h1, h2 {
@@ -33,6 +34,8 @@ body {
   background: linear-gradient(180deg, #2E3842 30.73%, #1A1919 64.58%);
   color: white;
   width: 400px;
+  display: block;
+  margin: auto;
 }
 
 body, button {
@@ -54,7 +57,7 @@ h1.title {
 
 h1.title > img {
   position: absolute;
-  right: 0;
+  right: -8px;
   bottom: -32px;
   height: 96px;
   filter: drop-shadow(5px 5px 5px #222);
@@ -157,4 +160,18 @@ footer > p {
 
 footer > p > a {
   color: var(--bd-banner-white);
+}
+
+/* iPhone 6 display size */
+@media screen and (max-width: 375px) {
+  h1.title > img {
+    right: -32px;
+  }
+}
+
+/* iPhone 5 display size */
+@media screen and (max-width: 320px) {
+  h1.title > img {
+    display: none;
+  }
 }

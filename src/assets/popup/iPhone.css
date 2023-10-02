@@ -1,0 +1,7 @@
+body {
+  box-sizing: border-box;
+  width: 100vw;
+  background: transparent;
+  background: linear-gradient(180deg, #2E3842 30.73%, #1A1919 64.58%);
+  background-size: 100vh;
+}

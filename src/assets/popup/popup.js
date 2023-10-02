@@ -36,3 +36,16 @@ function showLastDatabaseUpdateTime(date) {
     showLastDatabaseUpdateTime(response.lastUpdate);
   }
 })();
+
+// When using box-sizing: border-box; the popup in Chromium shrinks to an unusably narrow box.
+// For this reason, a separate style sheet is used for the iPhone to handle body paddings,
+// which would otherwise cause horizontal overflow in the modal sheet.
+(function loadIphoneStyles() {
+  if (navigator?.userAgent.includes('iPhone')) {
+    const element = document.createElement('link');
+    element.setAttribute('rel', 'stylesheet');
+    element.setAttribute('type', 'text/css');
+    element.setAttribute('href', 'iPhone.css');
+    document.getElementsByTagName('head')[0].appendChild(element);
+  }
+}());

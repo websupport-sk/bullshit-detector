@@ -101,7 +101,7 @@ button, select, button > span {
   background-color: var(--bd-banner-white);
   border-radius: 4px;
   padding: 2px 10px;
-  margin-left: 8px;
+  margin: 8px;
   color: var(--bd-banner-black);
 }
 
@@ -186,6 +186,7 @@ a, .subtitle {
   box-sizing: border-box;
   height: auto;
   width: 100%;
+  min-height: 50px;
   background-color: var(--bd-banner-red);
   display: grid;
   grid-template-columns: 1fr auto 1fr;
@@ -194,6 +195,9 @@ a, .subtitle {
 
 #collapsible-row > .center, #collapsible-row > .right {
   margin-left: auto;
+}
+
+#collapsible-row > .center > span, #collapsible-row > .right > a {
   line-height: 50px;
 }
 
@@ -321,14 +325,25 @@ a, .subtitle {
       display: block;
     }
 
-    #collapsible-row >.center {
-      line-height: 30px;
+    #collapsible-row > .center {
       padding: 10px 0;
+    }
+
+    #collapsible-row > .center > span {
+      line-height: 32px;
+    }
+
+    #collapsible-row > .center > button {
+      margin-top: 5px;
+    }
+
+    #collapsible-row > .right > a {
+      line-height: 40px;
     }
   }
 
   @media screen and (max-width: 400px) {
-    button, select, .subtitle, #bd-banner {
+    *, button, select, .subtitle, #bd-banner {
       font-size: 14px;
     }
 
