@@ -215,9 +215,7 @@ a, .subtitle {
 #expand-button {
   height: 24px;
   width: 24px;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='17' height='17' viewBox='0 0 17 17' fill='none'%3E%3Cpath d='M7.74966 13.5004C8.1647 13.9155 8.83872 13.9155 9.25376 13.5004L15.6288 7.12544C16.0438 6.7104 16.0438 6.03638 15.6288 5.62134C15.2137 5.2063 14.5397 5.2063 14.1247 5.62134L8.50005 11.2459L2.87544 5.62466C2.4604 5.20962 1.78638 5.20962 1.37134 5.62466C0.956299 6.0397 0.956299 6.71372 1.37134 7.12876L7.74634 13.5038L7.74966 13.5004Z' fill='white'/%3E%3C/svg%3E");
-  background-position: center;
-  background-repeat: no-repeat;
+  background: url("../img/sprites/chevron.svg") no-repeat center;
   transition: transform 0.5s;
 }
 
@@ -235,15 +233,26 @@ a, .subtitle {
 }
 
 .cary-wrapper {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='486' height='202' viewBox='0 0 486 202' fill='none'%3E%3Cpath d='M15 15L85.0768 188L153.151 15L242.249 188L317.832 15L393.415 188L471 15' stroke='%232E3842' stroke-width='28' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-  background-repeat: repeat-x;
   display: flex;
+  position: relative;
+  background-size: auto;
+}
+
+.supportline {
+  height: 203px;
+  pointer-events: none;
+}
+
+.supportline-infinite {
+  min-width: 100%;
+  background: url('../img/supportline/infinite.svg') repeat-x;
   background-size: auto;
 }
 
 .cary {
+  position: absolute;
   align-self: center;
-  background: white;
+  background: var(--bd-banner-white);
   border-radius: 50%;
   height: 160px;
 }
@@ -256,7 +265,7 @@ a, .subtitle {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="64" height="62" viewBox="0 0 64 62" fill="none"><path d="M27.2273 1.29842C30.2433 -0.154037 33.7567 -0.154035 36.7727 1.29842L53.0277 9.12642C56.0438 10.5789 58.2343 13.3257 58.9792 16.5893L62.9939 34.1787C63.7388 37.4423 62.957 40.8676 60.8698 43.4848L49.621 57.5904C47.5338 60.2076 44.3684 61.732 41.0208 61.732H22.9792C19.6316 61.732 16.4662 60.2076 14.379 57.5904L3.1302 43.4848C1.04302 40.8676 0.261238 37.4423 1.00614 34.1787L5.0208 16.5893C5.7657 13.3257 7.95622 10.5789 10.9723 9.12642L27.2273 1.29842Z" fill="%23CD5F5B"/></svg>') no-repeat center center;
+  background: url('../img/sprites/polygon.svg') no-repeat center center;
   height: 64px;
   width: 64px;
 }

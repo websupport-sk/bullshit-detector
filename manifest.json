@@ -26,8 +26,12 @@
   "web_accessible_resources": [
     {
       "resources": [
-        "src/assets/img/cary/magnifying_glass.png",
+        "src/assets/img/sprites/chevron.svg",
+        "src/assets/img/sprites/polygon.svg",
+        "src/assets/img/supportline/start.svg",
         "src/assets/styles/styles_of_beyond.css",
+        "src/assets/img/supportline/infinite.svg",
+        "src/assets/img/cary/magnifying_glass.png",
         "src/assets/fonts/WebsupportSans-Bold.woff2",
         "src/assets/fonts/WebsupportSans-Normal.woff2",
         "src/assets/fonts/WebsupportSans-ExtraBold.woff2"

@@ -79,6 +79,8 @@ export function showBanner(domainDetail: DomainDetail, hostname = '')  {
                 </div>
               </div>
               <div class="cary-wrapper">
+                <img class="supportline" src="${chrome.runtime.getURL('src/assets/img/supportline/start.svg')}" alt="">
+                <div class="supportline-infinite"></div>
                 <img src="${chrome.runtime.getURL('src/assets/img/cary/magnifying_glass.png')}"
                      alt="cary logo" id="cary" class="cary" />
               </div>
