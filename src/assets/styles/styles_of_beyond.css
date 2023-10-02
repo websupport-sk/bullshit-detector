@@ -234,7 +234,7 @@ a, .subtitle {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='486' height='202' viewBox='0 0 486 202' fill='none'%3E%3Cpath d='M15 15L85.0768 188L153.151 15L242.249 188L317.832 15L393.415 188L471 15' stroke='%232E3842' stroke-width='28' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
   background-repeat: repeat-x;
   display: flex;
-  background-size: contain;
+  background-size: auto;
 }
 
 .cary {
