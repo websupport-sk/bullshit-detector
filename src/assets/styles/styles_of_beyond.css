@@ -9,6 +9,7 @@
   --bd-banner-red: #CD5F5B;
   --bd-banner-white: #FFFFFF;
   --bd-banner-black: #1A1919;
+  --bd-banner-aqua: #B4E9DF;
 }
 
 .preload {
@@ -252,7 +253,7 @@ a, .subtitle {
 .cary {
   position: absolute;
   align-self: center;
-  background: var(--bd-banner-white);
+  background: var(--bd-banner-aqua);
   border-radius: 50%;
   height: 160px;
 }
