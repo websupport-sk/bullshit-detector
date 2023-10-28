@@ -2,42 +2,37 @@
   "manifest_version": 3,
   "name": "Bullshit Detector",
   "short_name": "Bullshit Detector",
-  "version": "2023.1",
-
+  "version": "2023.10",
   "description": "Chráňte vašich blízkych pred nedôveryhodným obsahom",
-
   "icons": {
     "16": "icons/icon16.png",
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
   },
-
   "action": {
     "default_icon": "icons/icon128.png",
-    "default_popup": "src/assets/popup/popup.html"
+    "default_popup": "popup/popup.html"
   },
-
   "background": {
-    "service_worker": "./dist/background.es.js"
+    "type": "module",
+    "service_worker": "./background.es.js"
   },
   "permissions": [ "tabs", "scripting", "storage"],
   "host_permissions": ["http://*/", "https://*/"],
-
   "web_accessible_resources": [
     {
       "resources": [
-        "src/assets/img/sprites/chevron.svg",
-        "src/assets/img/sprites/polygon.svg",
-        "src/assets/img/supportline/start.svg",
-        "src/assets/styles/styles_of_beyond.css",
-        "src/assets/img/supportline/infinite.svg",
-        "src/assets/img/cary/magnifying_glass.png",
-        "src/assets/fonts/WebsupportSans-Bold.woff2",
-        "src/assets/fonts/WebsupportSans-Normal.woff2",
-        "src/assets/fonts/WebsupportSans-ExtraBold.woff2"
+        "img/sprites/chevron.svg",
+        "img/sprites/polygon.svg",
+        "img/supportline/start.svg",
+        "styles/styles_of_beyond.css",
+        "img/supportline/infinite.svg",
+        "img/cary/magnifying_glass.png",
+        "fonts/WebsupportSans-Bold.woff2",
+        "fonts/WebsupportSans-Normal.woff2",
+        "fonts/WebsupportSans-ExtraBold.woff2"
       ],
       "matches": ["<all_urls>"]
     }
-
   ]
 }

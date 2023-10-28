@@ -41,7 +41,7 @@ export function showBanner(domainDetail: DomainDetail, hostname = '')  {
     ];
 
     for (const fontFace of fontFaces) {
-      const fontUrl = chrome.runtime.getURL(`src/assets/fonts/WebsupportSans-${fontFace.name}.woff2`);
+      const fontUrl = chrome.runtime.getURL(`fonts/WebsupportSans-${fontFace.name}.woff2`);
       document.fonts.add(
         new FontFace(
           'WebsupportSans',
@@ -59,7 +59,7 @@ export function showBanner(domainDetail: DomainDetail, hostname = '')  {
     shadowRoot.innerHTML = `
         <link
             type="text/css"
-            href="${chrome.runtime.getURL('src/assets/styles/styles_of_beyond.css')}"
+            href="${chrome.runtime.getURL('styles/styles_of_beyond.css')}"
             rel="stylesheet"
         >
         <div id="bd-banner" class="preload" style="display: none">
@@ -79,9 +79,9 @@ export function showBanner(domainDetail: DomainDetail, hostname = '')  {
                 </div>
               </div>
               <div class="cary-wrapper">
-                <img class="supportline" src="${chrome.runtime.getURL('src/assets/img/supportline/start.svg')}" alt="">
+                <img class="supportline" src="${chrome.runtime.getURL('img/supportline/start.svg')}" alt="">
                 <div class="supportline-infinite"></div>
-                <img src="${chrome.runtime.getURL('src/assets/img/cary/magnifying_glass.png')}"
+                <img src="${chrome.runtime.getURL('img/cary/magnifying_glass.png')}"
                      alt="cary logo" id="cary" class="cary" />
               </div>
             </div>

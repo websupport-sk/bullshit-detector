@@ -1,17 +1,15 @@
-// @ts-ignore
-import {defineConfig} from 'vite';
-
-
+import { defineConfig } from 'vite';
+import getAllFilenames from './utils/file_names';
 
 export default defineConfig({
+  publicDir: 'assets',
   build: {
-    sourcemap: true,
     outDir: './dist',
     lib: {
-      name: 'bullshit-detektor',
-      entry: './src/background.ts',
+      name: 'bullshit-detector',
+      entry: getAllFilenames('./src', /\.ts$/),
       formats: ['es'],
-      fileName: (format: string) => `background.${format}.js`,
+      fileName: (format: string, entryName: string) => `${entryName}.${format}.js`,
     },
     rollupOptions: {
       treeshake: 'safest',

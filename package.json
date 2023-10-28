@@ -9,13 +9,14 @@
     "url": "https://github.com/websupport-sk/bullshit-detector/issues"
   },
   "scripts": {
-    "build": "tsc --noEmit && vite build",
-    "dev": "tsc --noEmit && vite build --watch",
+    "build": "tsc --noEmit && vite build && cp manifest.json dist",
+    "dev": "tsc --noEmit && rm -rf dist && mkdir dist && cp manifest.json dist && vite build --watch --sourcemap=true --emptyOutDir=false",
     "lint": "eslint ./src '**/*.ts'",
     "lint:fix": "eslint ./src '**/*.ts' --fix"
   },
   "devDependencies": {
     "@types/chrome": "^0.0.225",
+    "@types/node": "^20.8.9",
     "@typescript-eslint/eslint-plugin": "^5.59.5",
     "@typescript-eslint/parser": "^5.59.5",
     "eslint": "^8.40.0",
