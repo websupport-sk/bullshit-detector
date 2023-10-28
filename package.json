@@ -10,6 +10,7 @@
   },
   "scripts": {
     "build": "tsc --noEmit && vite build && cp manifest.json dist",
+    "build:firefox": "npm run build && sed -i '' 's@\"service_worker\": \"./background.es.js\"@\"scripts\": [\"./background.es.js\"]@g' dist/manifest.json",
     "dev": "tsc --noEmit && rm -rf dist && mkdir dist && cp manifest.json dist && vite build --watch --sourcemap=true --emptyOutDir=false",
     "lint": "eslint ./src '**/*.ts'",
     "lint:fix": "eslint ./src '**/*.ts' --fix"
