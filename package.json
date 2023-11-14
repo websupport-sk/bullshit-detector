@@ -10,7 +10,9 @@
   },
   "scripts": {
     "build": "tsc --noEmit && vite build && cp manifest.json dist",
-    "build:firefox": "npm run build && sed -i '' 's@\"service_worker\": \"./background.es.js\"@\"scripts\": [\"./background.es.js\"]@g' dist/manifest.json",
+    "build:firefox": "npm run build && node ./utils/transform_manifest_firefox.mjs",
+    "build:opera": "npm run build && node ./utils/transform_manifest_opera.mjs",
+    "zip": "cd dist && zip -r bullshit-detector.zip *",
     "dev": "tsc --noEmit && rm -rf dist && mkdir dist && cp manifest.json dist && vite build --watch --sourcemap=true --emptyOutDir=false",
     "lint": "eslint ./src '**/*.ts'",
     "lint:fix": "eslint ./src '**/*.ts' --fix"
